@@ -25,7 +25,7 @@ export const getStaticProps = async () => {
     }
 }
 
-const browse = ({cars}) => {
+const Browse = ({cars}) => {
   const [searchPath, setSearchPath] = useState('')
   const [loading, setLoading] = useState(false)
   const [carsListings, setCarsListings] = useState(JSON.parse(cars))
@@ -63,4 +63,4 @@ const browse = ({cars}) => {
     </>)
 }
 
-export default browse
+export default Browse
