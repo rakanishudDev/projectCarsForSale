@@ -34,7 +34,7 @@ const New = () => {
                 <h3 className={styles.categoryHeader}>New</h3>
             <div className={styles.row}>
                 {listings ? listings.map((doc) => {
-                        return <div className={styles.listingContainer}>
+                        return <div key={doc.id} className={styles.listingContainer}>
                                     <div className={styles.topBlueLine}></div>
                                     
                                     <div style={{background: `url(${doc.data.imgUrls[0]}) center no-repeat`, backgroundSize: "cover"}} key={doc.id}className={styles.imgDiv}>

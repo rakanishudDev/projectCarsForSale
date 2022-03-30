@@ -33,7 +33,7 @@ const SpecialOffer = () => {
             <div className={styles.row}>
                 {listings ? listings.map((doc) => {
 
-                        return <div className={styles.listingContainer}>
+                        return <div key={doc.id} className={styles.listingContainer}>
                                     <div style={{background: `url(${doc.data.imgUrls[0]}) center no-repeat`, backgroundSize: "cover"}} key={doc.id}className={styles.imgDiv}>
 
                                     </div>
