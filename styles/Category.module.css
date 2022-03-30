@@ -23,7 +23,7 @@
 }
 
 .checkboxDiv input[type=checkbox] {
-    margin-right: 1rem;
+    margin-left: 1rem;
     transform: scale(1.4);
     margin-bottom: 5px;
     

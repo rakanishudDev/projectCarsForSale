@@ -94,6 +94,7 @@ const Category = ({onSearch}) => {
 
   return (
     <div className={styles.categoryContainer}>
+        
         <form onSubmit={onSubmit}>
         <div className={styles.selectContainer}>
             <label><strong>Mark</strong></label>
@@ -405,8 +406,9 @@ const Category = ({onSearch}) => {
             </select>
             <br />
             <div className={styles.checkboxDiv}>
+                    <label><strong>Offer</strong></label>
                     <input id="offer" onChange={onSelectVehicle} type="checkbox"/>
-                    <label>Offer</label>
+                    
                   </div>
             <br />
             <button className={styles.categorySelect}>Search</button>

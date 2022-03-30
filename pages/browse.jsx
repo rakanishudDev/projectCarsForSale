@@ -49,16 +49,14 @@ const Browse = ({cars}) => {
 
   return (<>
     <Search />
-    <div><p>{searchPath}</p></div>
+    
+    
     <div className="browse">
+        
         <Category changeSearchPath={changeSearchPath} onSearch={onSearch} />
+
         <BrowseListings carsListings={carsListings} loading={loading} />
-        <style jsx>{`
-          .browse {
-            display: flex;
-            gap: 2rem;
-          }
-        `}</style>
+        
     </div>
     </>)
 }

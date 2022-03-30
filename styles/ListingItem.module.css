@@ -12,6 +12,7 @@
     flex-direction: row;
     width: 100%;
     border-bottom: solid black 1px;
+    gap: 1rem;
 }
 .imgDiv {
     min-width: 210px;
@@ -31,7 +32,7 @@
 }
 .itemDetails {
     width: 100%;
-    margin-left: 1rem;
+    
 }
 .itemNameLink {
     display: flex;

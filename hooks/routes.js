@@ -8,11 +8,11 @@ export const withPrivate = (Component) => {
         const router = useRouter()
         if (checkingStatus) {
             
-            return <Loading />
+            return <div className="loadingContainer"><Loading /></div>
         }
         if (!loggedIn) {
             router.replace("/auth/sign-in")
-            return <Loading />
+            return <div className="loadingContainer"><Loading /></div>
         }
         return <Component />
         
@@ -24,11 +24,11 @@ export const withPublic = (Component) => {
         const {loggedIn, checkingStatus} = UseAuthStatus()
         const router = useRouter()
         if (checkingStatus) {
-            return <Loading />
+            return <div className="loadingContainer"><Loading /></div>
         }
         if (loggedIn) {
             router.replace("/")
-            return <Loading />
+            return <div className="loadingContainer"><Loading /></div>
         } else {
             console.log('Not Logged-In')
             return <Component />

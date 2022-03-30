@@ -8,7 +8,8 @@ const ListingItem = ({data, id, myPrivate, onEdit}) => {
         <div className={styles.contentContainer}>
             <div className={styles.imgDiv}>
                 <Link className="link" href={"/listings/" + id}><img onClick={() => console.log(data)} className={styles.img} src={data.imgUrls[0]} alt="image" /></Link>
-            </div>   
+            </div>
+            
             <div className={styles.itemDetails}>
                 <Link href={"/listings/" + id}>
                     <a className={styles.itemNameLink}>

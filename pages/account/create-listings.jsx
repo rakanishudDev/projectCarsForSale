@@ -105,6 +105,10 @@ const CreateListings = () => {
   }
   return (
     <div className={styles.createListingContainer}>
+      <div className={styles.formBackground}>
+      <div className="blueRow"></div>
+        <h2 className={styles.formHeader}>Create a Listing</h2>
+       
         <form onSubmit={onSubmit} className={styles.form}>
         <label className={styles.label}>Name</label>
             <input
@@ -1033,7 +1037,7 @@ const CreateListings = () => {
               <br />
               <br/>
         </form>
-        
+      </div>
     </div>
   )
 }

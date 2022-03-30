@@ -1,5 +1,5 @@
 .container {
-  padding: 0 2rem;
+  
 }
 
 .main {
@@ -11,90 +11,81 @@
   justify-content: center;
   align-items: center;
 }
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
+.rowContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 21px;
+}
+.listingContainer {
+  overflow: hidden;
+  border: solid rgb(0, 0, 0) 1px;
+  border-radius: 1rem;
+  background-color: white;
+  
+}
+.imgDiv {
+  
+  min-width: 210px;
+  min-height: 150px;
+  max-width: 210px;
+  max-height: 150px;
+  border-bottom: solid rgb(0, 0, 0) 1px;
+  
+  
 }
 
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+.categoryHeader {
+  margin: 18px 0;
+  padding: 0.1rem 1rem;
+  
 }
-
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+.imgDetails {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
 }
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
+.imageInfo {
+  font-weight: 500;
   margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  
+  
+}
+.priceDiv {
+  display: flex;
+  justify-content: space-between;
+}
+.imagePrice {
+  font-weight: 500;
+  color: green;
+  margin: 0;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.discount {
+  margin: 0;
+  padding: 0 0.5rem;
+}
+.price {
+  font-weight: 500;
+  color: green;
+}
+.bottomBlueLine {
+  height: 8px;
+  background-color:rgb(113, 173, 241);
+}
+.topBlueLine {
+  height: 8px;
+  background-color:rgb(113, 173, 241);
+  border-bottom: solid rgb(0, 0, 0) 1px;
 }
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
-}
-
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}

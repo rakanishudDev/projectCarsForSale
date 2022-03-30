@@ -38,6 +38,7 @@ const Navbar = () => {
         <h2 className={styles.header}>Yacars</h2>
       </header>
       </Link>
+      
       <div className={styles.Navbar}>
         
         <Link href="/account/create-listings">
@@ -54,6 +55,7 @@ const Navbar = () => {
               </ul>
           </nav>
       </div>
+      
     </div>
   )
 }

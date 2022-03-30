@@ -40,14 +40,14 @@ const Account = () => {
       </div>
 
       <div className={styles.myListingsContainer}>
-        <div>
+        
           <h2>My Listings</h2>
           <br />
           <MyListings />
           <br />
           <br />
           <br />
-        </div>
+        
         
       </div>
 

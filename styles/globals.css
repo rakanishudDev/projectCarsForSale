@@ -20,12 +20,16 @@ a {
 }
 .App {
   min-height: 100vh;
+  
+}
+.mainContainer {
   margin: 0 2rem;
 }
 .search-div {
+
   display: flex;
   justify-content: center;
-  padding: 2rem 0;
+  margin: 2rem 0;
 }
 .search-input {
   width: 350px;
@@ -39,6 +43,9 @@ a {
   border: solid 1px gray;
   padding: 0 10px;
   font-size: 1rem;
+}
+.searchButton {
+  background: white;
 }
 .sellButton {
   border-top: solid 2px black; 
@@ -98,4 +105,19 @@ a {
 .loadingContainer {
   width: 100%;
   text-align: center;
+}
+/* Browse */
+.browse {
+  margin: 0 2rem;
+  display: flex;
+  gap: 2rem;
+}
+.blueColumn {
+  background-color: rgb(113, 173, 241);
+  width: 1rem;
+}
+.blueRow {
+  background-color: rgb(113, 173, 241);
+  height: 8px;
+  width: 100%;
 }
