@@ -1,5 +1,9 @@
 html,
 body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: linear-gradient(rgb(248, 248, 248), rgb(226, 226, 226), rgb(226, 226, 226), rgb(202, 202, 202));
+  min-height: 100vh;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -13,4 +17,85 @@ a {
 
 * {
   box-sizing: border-box;
+}
+.App {
+  min-height: 100vh;
+  margin: 0 2rem;
+}
+.search-div {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+.search-input {
+  width: 350px;
+  font-size: 1rem;
+  padding: 5px;
+}
+.sellButton,
+.searchButton {
+  height: 32px;
+  background: none;
+  border: solid 1px gray;
+  padding: 0 10px;
+  font-size: 1rem;
+}
+.sellButton {
+  border-top: solid 2px black; 
+  /* border-bottom: solid 1px black; */
+  box-shadow: black 1px 0 0 ;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.sellButton:hover {
+  background-color: rgb(113, 173, 241);
+  color: white;
+  box-shadow: rgb(0, 0, 0) 0 0 1px;
+  border-color: black;
+  box-shadow: black 1px 1px 0 ;
+  
+}
+.sellButton-a {
+  margin: auto 0;
+}
+.searchButton:hover {
+  background: rgb(236, 236, 236); 
+}
+.formButtonOauth {
+  border-width: 1px;
+  background-color: white;
+  width: 100%;
+  height: 32px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+.formButtonText {
+  margin: 0;
+  padding: 0;
+}
+.socialIcon {
+  margin-right: 10px;
+  width: 1.4rem;
+  height: 1.4rem;
+}
+.oauth {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.listingItemsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin:  0;
+  width: 100%;
+}
+.loadingContainer {
+  width: 100%;
+  text-align: center;
 }

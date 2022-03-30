@@ -1,0 +1,112 @@
+.createListingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    font-size: 1rem;
+}
+.label {
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+.formButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.formInput {
+    font-size: 1rem;
+    padding: 0;
+    border-radius: 1rem;
+    max-width: 100%;
+    padding: 8px;
+}
+.formInputSmall {
+    border-radius: 1rem;
+    padding: 5px;
+    width: 90px;
+    font-size: 1rem;
+}
+.formDescription {
+    border-radius: 1rem;
+    min-width: 500px;
+    max-width: 500px;
+    min-height: 250px;
+    max-height: 250px;
+    
+    border: 5px solid transparent;
+}
+.button {
+    background-color: white;
+    border-radius: 1rem;
+    font-size: 1rem;
+    padding: 8px;
+    min-width: 60px;
+}
+.buttonActive {
+    background-image: linear-gradient(white, rgb(202, 202, 202));
+    opacity: 1;
+    transition: 0.2s;
+    border-radius: 1rem;
+    font-size: 1rem;
+    padding: 8px;
+    min-width: 60px;
+}
+.priceDiv {
+    display: flex;
+    align-items: center;
+}
+.priceCurrency {
+    margin-left: 4px;
+}
+.fileInputComment {
+    margin: 0;
+    margin-bottom: 5px;
+}
+.formFileInput {
+    width: 280px;
+    border-radius: 60px;
+    border: solid rgba(0, 0, 0, 0.2) 2px;
+    padding: 10px 0 10px 0;
+    font-size: 1rem;
+    background-color: white;
+}
+.formFileInput::-webkit-file-upload-button {
+    border-color: rgb(223, 222, 222);
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 5px;
+    color: black;
+}
+.submitButton {
+    position: relative;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 270px;
+    height: 41px;
+    border-top: solid rgb(0, 0, 0) 2px;
+    border-bottom: solid rgb(0, 0, 0) 1px;
+    background-image: white;
+    border-radius: 1rem;
+    transition: 0.2s;
+}
+.submitButton:hover {
+    background-color: rgb(113, 173, 241);
+   
+    color: white;
+}

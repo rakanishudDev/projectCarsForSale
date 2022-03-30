@@ -1,0 +1,38 @@
+.categoryContainer {
+    display: flex;
+    flex-direction: column;
+    
+}
+.selectContainer {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.selectContainer label {
+    
+}
+.categorySelect {
+    background: white;
+    min-width: 250px;
+    max-width: 350px;
+    font-size: 1rem;
+    padding: 5px 5px 5px 0;
+    margin-bottom: 5px;
+    
+}
+
+.checkboxDiv input[type=checkbox] {
+    margin-right: 1rem;
+    transform: scale(1.4);
+    margin-bottom: 5px;
+    
+}
+.searchPath {
+    color: rgb(100, 100, 100);
+    margin: 0;
+    list-style: none
+}
+.searchPathContainer {
+   
+}

@@ -1,0 +1,41 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    justify-content: space-between;
+
+}
+.accountContainer {
+    display: flex;
+    justify-content: space-between;
+    
+}
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+}
+.signOut {
+    cursor: pointer;
+    font-size: 1rem;
+  
+}
+.accountSettings {
+
+}
+.settings {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.settings li {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+}
+.settings li:hover {
+    color:rgb(0, 119, 255);
+}
+.myListingsContainer {
+    display: flex;
+    width: 1200px;
+}

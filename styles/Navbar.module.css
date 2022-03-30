@@ -1,0 +1,47 @@
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+}
+.Navbar {
+    width: 374px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.ul {
+    font-size: 1rem;
+    list-style: none;
+    display: flex;
+    margin: 16px 0;
+    padding: 0;
+    
+}
+.ul a {
+    padding: 0.5rem 0.5rem;
+    transition: 0.3s;
+}
+.ul li {
+    transition: 0.1s;
+}
+.ul a:hover {
+    color:rgb(0, 119, 255)
+}
+.ul li:hover {
+    transform: scale(1.1);
+}
+.headerContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+}
+.header {
+    border-right: solid 3px black;
+    border-top-right-radius: 2rem;
+    margin: 0;
+    padding-right: 8px;
+}
+.icon {
+    justify-self: flex-start;
+    width: 70px;
+}
