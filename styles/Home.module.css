@@ -24,6 +24,7 @@
   margin-bottom: 21px;
 }
 .listingContainer {
+  cursor: pointer;
   overflow: hidden;
   border: solid rgb(0, 0, 0) 1px;
   border-radius: 1rem;

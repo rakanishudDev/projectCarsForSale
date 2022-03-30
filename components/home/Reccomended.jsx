@@ -3,9 +3,15 @@ import {getDocs, collection, query, where, orderBy, limit} from 'firebase/firest
 import { db } from "../../firebase.config"
 import styles from '../../styles/Home.module.css'
 import Loading from '../comps/Loading'
+import {useRouter} from 'next/router'
 
 const Reccomended = () => {
     const [listings, setListings] = useState(null);
+    const router = useRouter()
+    const onClick = (id) => {
+        router.push("/listings/" + id)
+    }
+
     useEffect(() => {
         let array = []
         const fetchListings = async () => {
@@ -35,7 +41,7 @@ const Reccomended = () => {
               
             <div className={styles.row}>
                 {listings ? listings.map((doc) => {
-                        return <div key={doc.id} className={styles.listingContainer}>
+                        return <div onClick={() => onClick(doc.id)} key={doc.id} className={styles.listingContainer}>
                                     <div style={{background: `url(${doc.data.imgUrls[0]}) center no-repeat`, backgroundSize: "cover"}} key={doc.id}className={styles.imgDiv}>
 
                                     </div>
