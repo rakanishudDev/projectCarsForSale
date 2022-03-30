@@ -64,7 +64,7 @@ const ListingPage = ({listing, owner}) => {
         discount = data.data.regularPrice - data.data.discountedPrice
     }
     useEffect(() => {
-        console.log(textarea)
+        
         textarea.current.style.height = 10 + textarea.current.scrollHeight + 'px';
         textarea.current.oninput = function() {
             textarea.current.style.height = 10 + textarea.current.scrollHeight + 'px';

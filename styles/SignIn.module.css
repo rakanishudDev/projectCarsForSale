@@ -3,6 +3,9 @@
     flex-direction: column;
     align-items: center;
 }
+.pageContainer a:hover {
+    color:rgb(0, 119, 255)
+}
 .formContainer {
     width: 280px;
     display: flex;
@@ -26,8 +29,17 @@
     align-items: center;
     justify-content: center;
     font-weight: 500;
+    transition: 0.2s;
 }
 .formButtonText {
     margin: 0;
     padding: 0;
 }
+.formButton:hover {
+    background-color: rgb(113, 173, 241);
+    color: white;
+    box-shadow: rgb(113, 173, 241) 0 0 0 1px;
+    
+   
+    
+  }

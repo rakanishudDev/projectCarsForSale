@@ -78,6 +78,11 @@ a {
   align-items: center;
   justify-content: center;
   font-weight: 500;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.formButtonOauth:hover {
+  box-shadow: rgb(113, 173, 241) 0 0 0 1px;
 }
 .formButtonText {
   margin: 0;
@@ -93,6 +98,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
 }
 .listingItemsContainer {
   display: flex;
