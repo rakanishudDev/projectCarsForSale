@@ -7,7 +7,7 @@ import {useRouter} from 'next/router'
 import Loading from '../../components/comps/Loading';
 
 
-const createListings = () => {
+const CreateListings = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
@@ -1038,4 +1038,4 @@ const createListings = () => {
   )
 }
 
-export default withPrivate(createListings)
+export default withPrivate(CreateListings)

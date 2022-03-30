@@ -5,7 +5,7 @@ import styles from '../../styles/SignIn.module.css'
 import { signUpUser } from '../../functions/authFunctions'
 import { withPublic } from '../../hooks/routes'
 
-const signUp = () => {
+const SignUp = () => {
   const [formData, setFormData] = useState({
     email: '',
     name: '',
@@ -319,4 +319,4 @@ const {email, name, location,  username, password, passwordConfirm} = formData;
   )
 }
 
-export default withPublic(signUp)
+export default withPublic(SignUp)

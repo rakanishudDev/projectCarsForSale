@@ -27,9 +27,9 @@ const Navbar = () => {
 
     console.log(auth.currentUser)
   }, [auth.currentUser])
-  if (userOnline === null) {
-    return <div className={styles.Navbar}><p>. . .</p></div>
-  } 
+  // if (userOnline === null) {
+  //   return <div className={styles.Navbar}><p>. . .</p></div>
+  // } 
   return (
     <div className={styles.navContainer}>
       <Link href="/">

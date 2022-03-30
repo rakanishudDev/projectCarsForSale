@@ -9,7 +9,7 @@ import {toast} from 'react-toastify'
 
 
 
-const signIn = () => {
+const SignIn = () => {
     const router = useRouter()
     const [formData, setFormData] = useState({
         email: '',
@@ -72,4 +72,4 @@ const signIn = () => {
   )
 }
 
-export default withPublic(signIn)
+export default withPublic(SignIn)
