@@ -1,6 +1,6 @@
 import {getAuth, onAuthStateChanged} from 'firebase/auth';
 import {getStorage, ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
-import {addDoc, collection, serverTimestamp, doc, updateDoc} from 'firebase/firestore';
+import {addDoc, collection, serverTimestamp, doc, updateDoc, getDoc} from 'firebase/firestore';
 import {v4 as uuidv4} from 'uuid';
 import { db } from '../firebase.config';
 import {toast} from 'react-toastify';
@@ -15,7 +15,6 @@ export const createListing = async (formData) => {
         vehicleType,
         bodytype,
         model,
-        make,
         year, 
         power,
         engine,
@@ -28,10 +27,11 @@ export const createListing = async (formData) => {
         color,
         description,
         offer, 
-        regularPrice, 
-        discountedPrice,
         images,
       } = formData
+      const regularPrice = parseInt(formData.regularPrice);
+      const discountedPrice = parseInt(formData.discountedPrice);
+      const make = formData.make.toUpperCase()
     
       if(discountedPrice > regularPrice) {
         error = true
@@ -95,9 +95,12 @@ export const createListing = async (formData) => {
         toast.error('Images Not Uploaded!');
         error = true
       });
-
+      
       const formDataCopy = {...formData, imgUrls, timestamp: serverTimestamp()}
+      formDataCopy.make = make
+      formDataCopy.regularPrice = regularPrice
       delete formDataCopy.images;
+      formDataCopy.discountedPrice = discountedPrice;
       !formDataCopy.offer && delete formDataCopy.discountedPrice;
 
       const docRef = await addDoc(collection(db, 'listings'), formDataCopy).catch(err => error = true)
@@ -115,6 +118,8 @@ export const createListing = async (formData) => {
 }
 
 
+
+
 // UPDATE LISTING ==>
 export const updateListing = async (formData, slug, changeImgs) => {
   const auth = getAuth()
@@ -124,7 +129,6 @@ export const updateListing = async (formData, slug, changeImgs) => {
         vehicleType,
         bodytype,
         model,
-        make,
         year, 
         power,
         engine,
@@ -137,11 +141,11 @@ export const updateListing = async (formData, slug, changeImgs) => {
         color,
         description,
         offer, 
-        regularPrice, 
-        discountedPrice,
         images,
       } = formData
-    
+      const regularPrice = parseInt(formData.regularPrice);
+      const discountedPrice = parseInt(formData.discountedPrice);
+      const make = formData.make.toUpperCase()
       if(discountedPrice > regularPrice) {
         error = true
         toast.error('Discounted Price needs to be less than Regular Price');
@@ -213,6 +217,9 @@ export const updateListing = async (formData, slug, changeImgs) => {
       try {
       
       formDataCopy = {...formData, timestamp: serverTimestamp()}
+      formDataCopy.regularPrice = regularPrice
+      formDataCopy.discountedPrice = discountedPrice
+      formDataCopy.make = make
       delete formDataCopy.images;
       !formDataCopy.offer && delete formDataCopy.discountedPrice;
 
@@ -230,3 +237,33 @@ export const updateListing = async (formData, slug, changeImgs) => {
 
   return {ok, error}
 }
+
+
+
+
+// Save Listings ==>
+export const saveListing = async (docId) => {
+  const auth = getAuth()
+  const listingRef = doc(db, 'users', auth.currentUser.uid);
+  const docSnap = await getDoc(listingRef);
+  let ok = true
+  const favorites = docSnap.data().favorites;
+  favorites.map(listing => {
+    if (listing === docId) {
+      return ok = false
+    }
+  })
+  if (ok) {
+    favorites.unshift(docId)
+    await updateDoc(listingRef, {
+      favorites
+    })
+    toast.info('Listing saved')
+    return
+  } else {
+    toast.warning('Listing is already saved');
+    return
+  }
+
+}
+

@@ -31,6 +31,7 @@ const Navbar = () => {
   //   return <div className={styles.Navbar}><p>. . .</p></div>
   // } 
   return (
+    <>
     <div className={styles.navContainer}>
       <Link href="/">
       <header className={styles.headerContainer} >
@@ -57,6 +58,8 @@ const Navbar = () => {
       </div>
       
     </div>
+    
+    </>
   )
 }
 

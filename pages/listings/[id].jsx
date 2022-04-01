@@ -71,6 +71,9 @@ const ListingPage = ({listing, owner}) => {
         }
     }, [textarea])
   return (
+      <>
+      <br />
+    <div className="blueRowSmall"></div>
       <div className={styles.pageContainer}>
           <br />
           <div className={styles.nameContainer}>
@@ -187,6 +190,7 @@ const ListingPage = ({listing, owner}) => {
         </div>
         <br />
     </div>
+    </>
   )
 }
 

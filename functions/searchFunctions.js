@@ -12,14 +12,26 @@ const {
     transmission,
     drivetrain,
     year,
+    startPrice,
+    endPrice,
     offer
     } = searchData;
 
+    const startingPrice = parseInt(startPrice || 0)
+    const endingPrice = parseInt(endPrice || 1000000)
+
+    console.log(startingPrice + ' yayy')
+    console.log(endingPrice + ' yayy')
     const listings = []
     try {
     const listingRef = collection(db, 'transport')
     
     const whereArray = []
+    const startWhere = where('regularPrice', ">=", startingPrice)
+    whereArray.push(startWhere)
+    const endWhere = where('regularPrice', "<=", endingPrice)
+    whereArray.push(endWhere)
+
     if (vehicleType !== 'all') {
         const q = where('vehicleType', '==', vehicleType)
         whereArray.push(q)
@@ -53,7 +65,9 @@ const {
         whereArray.push(q)
     }
     console.log(whereArray)
-    const q = query(listingRef, ...whereArray, orderBy('timestamp', 'desc'), limit(15))
+    
+    const q = query(listingRef, ...whereArray, orderBy('regularPrice'), orderBy('timestamp', 'desc'), limit(15))
+    // const qq = query(listingRef, where('regularPrice', ">", startingPrice), limit(15))
     const querySnap = await getDocs(q)
     if (querySnap) {
         querySnap.forEach(doc => {

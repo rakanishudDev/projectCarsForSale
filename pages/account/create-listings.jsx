@@ -28,8 +28,8 @@ const CreateListings = () => {
     number: '',
     description: '',
     offer: false,
-    regularPrice: undefined,
-    discountedPrice: undefined,
+    regularPrice: 0,
+    discountedPrice: 0,
     images: {},
   });
   const {name,
@@ -59,6 +59,7 @@ const CreateListings = () => {
     if (e.target.id === 'make') {
       makeV = e.target.value.toUpperCase()
     }
+    console.log(e.target.value)
     let boolean = null;
       if (e.target.value === 'true') {
         boolean = true
@@ -73,7 +74,7 @@ const CreateListings = () => {
       }
       if (!e.target.files) {
         setFormData((prevState) => {
-          return {...prevState, [e.target.id]: boolean?? makeV?? e.target.value}
+          return {...prevState, [e.target.id]: boolean?? e.target.value}
         })
       }
   }

@@ -12,7 +12,8 @@ const Profile = () => {
         name: auth.currentUser.displayName,
         email: auth.currentUser.email,
         location: '',
-        username: ''
+        username: '',
+        favorites: []
       });
     const {email, name, location, username} = user
     const [changeDetails, setChangeDetails] = useState(false)
@@ -53,7 +54,6 @@ const Profile = () => {
         }
         setChangeDetails(!changeDetails)
     }
-
     useEffect(() => {
         console.log(auth.currentUser)
         const fetchUser = async () => {
@@ -63,7 +63,7 @@ const Profile = () => {
           if (docSnap.exists() ) {
             setUser(prevState => {
               setLocationVar(docSnap.data().location)
-              return {...prevState, username: docSnap.data().username, location: docSnap.data().location}
+              return {...prevState, username: docSnap.data().username, location: docSnap.data().location, favorites: docSnap.data().favorites}
             })
           }
         }
@@ -77,24 +77,35 @@ const Profile = () => {
           <div className={styles.avatrDiv}>         
             <img className={styles.profileAvatar} src="/images/Profile_avatar.png" alt="Avatar" />
           </div>
-
-          <div className={styles.profileDetails}>
-            <p className={styles.profileUsername}>{username}</p>
-            <div>
-              <label className={styles.inputLabel}>Email</label>
-              <input autoComplete="off" required disabled type="email" id="email" className={changeDetails ? styles.profileDetailsInputActive : styles.profileDetailsInput} placeholder="Email" value={email} onChange={onChange}/>
-            </div>
-            <div>
-              <label className={styles.inputLabel}>Name</label>
-              <input autoComplete="off" required disabled={!changeDetails} type="name" id="name" className={changeDetails ? styles.profileDetailsInputActive : styles.profileDetailsInput} placeholder="Name" value={name} onChange={onChange}/>
-            </div>
-            <div>
-              <label className={styles.inputLabel}>Location</label>
-              <input autoComplete="off" required disabled={!changeDetails} type="location" id="location"  className={changeDetails ? styles.profileDetailsInputActive : styles.profileDetailsInput} placeholder="Location" value={location} onChange={onChange}/>
-            </div>
-            <br/>
+          <div>
+            <p className={styles.profileUsername}>{username ? username : 'loading...'}</p>
+          <table className={styles.profileDetailsTable} >
+          
+          <tbody>
+            <tr>
+              <td style={{height: "16px"}} className={styles.inputLabel}>Email</td>
+              <td >
+                <input autoComplete="off" required disabled type="email" id="email" className={changeDetails ? styles.profileDetailsInputActive : styles.profileDetailsInput} placeholder="Email" value={email} onChange={onChange}/>
+              </td>
+            </tr>
+            <tr>
+              <td style={{height: "16px"}} className={styles.inputLabel}>Name</td>
+              <td>
+                <input autoComplete="off" required disabled={!changeDetails} type="name" id="name" className={changeDetails ? styles.profileDetailsInputActive : styles.profileDetailsInput} placeholder="Name" value={name} onChange={onChange}/>
+              </td>
+            </tr>
+            <tr>
+              <td  className={styles.inputLabel}>Location</td>
+              <td >
+                <input autoComplete="off" required disabled={!changeDetails} type="location" id="location"  className={changeDetails ? styles.profileDetailsInputActive : styles.profileDetailsInput} placeholder="Location" value={location} onChange={onChange}/>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <br/>
             <button onClick={onChangeDetails} type="button" className={styles.changeSave}>{changeDetails ? 'Save' : 'Change'}</button>
           </div>
+          
 
         </div>
       </div>

@@ -33,6 +33,23 @@
     margin: 0;
     list-style: none
 }
+.categoryPrice {
+
+    font-size: 1rem;
+    min-width: 105px;
+    max-width: 105px;
+    padding: 5px 5px 5px 4px;
+    margin-bottom: 5px;
+    height: 30px;
+}
+.priceDiv {
+    display: flex;
+    justify-content: space-between;
+}
+.separator {
+    padding: 5px 0;
+
+}
 .searchPathContainer {
    
 }

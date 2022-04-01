@@ -38,7 +38,8 @@ export const signUpUser = async (formData) => {
 
 
     } catch (err) {
-        console.log(err)
+        console.table(err.message)
+        toast.error(err.code)
         return {
             ok: false
         }

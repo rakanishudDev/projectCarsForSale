@@ -48,9 +48,13 @@ const Browse = ({cars}) => {
  }
 
   return (<>
+    <br />
+    <div className="blueRowSmall"></div>
     <Search />
     
     
+
+    <br />
     <div className="browse">
         
         <Category changeSearchPath={changeSearchPath} onSearch={onSearch} />

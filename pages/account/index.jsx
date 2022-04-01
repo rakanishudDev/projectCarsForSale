@@ -15,20 +15,24 @@ const Account = () => {
     router.push('/auth/sign-in')
   }
   return (
+    <>
+    
     <div className={styles.pageContainer}>
       
       <div>
-        
+   
+      <br />
+      <div className="blueRowSmall"></div>
         <div className={styles.accountContainer}>
           <div>
-            <div className={styles.headerContainer}>
-              <h2>Profile</h2>
+            <h2 className={styles.heading}>Profile</h2>
+              
               {/* <button className={styles.signOut} onClick={signOut} >Sign Out</button> */}
-            </div>
+            
             <Profile />
           </div>
           <div className={styles.accountSettings}>
-            <h3>Account Settings</h3>
+            <h3 style={{marginTop: ""}}>Account Settings</h3>
             <ul className={styles.settings}>
               <li>Change Account Email</li>
               <li>Change Password</li>
@@ -38,20 +42,25 @@ const Account = () => {
           </div>
         </div>
       </div>
-
+      <div>
+      <div className="blueRowSmall"></div>
       <div className={styles.myListingsContainer}>
+
         
-          <h2>My Listings</h2>
+          
           <br />
-          <MyListings />
+          <div >
+            <MyListings />
+          </div>
           <br />
           <br />
           <br />
         
         
       </div>
-
+      </div>
     </div>
+    </>
   )
 }
 

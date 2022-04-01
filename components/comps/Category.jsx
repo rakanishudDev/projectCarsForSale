@@ -12,6 +12,8 @@ const Category = ({onSearch}) => {
         transmission: 'all',
         drivetrain: 'all',
         year: 'all',
+        startPrice: 0,
+        endPrice: 1000000,
         offer: false
     })
     const {vehicleType, bodytype, make, fuel, transmission, drivetrain, year, offer } = searchData
@@ -54,6 +56,7 @@ const Category = ({onSearch}) => {
         
     
     const onSelectVehicle= (e) => {
+        console.log(e.target.value)
         if (e.target.id === 'offer') {
             changeSearchPath(e.target.checked, e.target.id)
         } else {
@@ -404,6 +407,13 @@ const Category = ({onSearch}) => {
                 <option value="1900">1900</option>
                 </optgroup>
             </select>
+
+            <label><strong>Price</strong></label>
+            <div className={styles.priceDiv}>
+                <input className={styles.categoryPrice} type="number" id="startPrice" onChange={onSelectVehicle} />
+                <span className={styles.separator}>–</span>
+                <input className={styles.categoryPrice} type="number" id="endPrice" onChange={onSelectVehicle} />
+            </div>
             <br />
             <div className={styles.checkboxDiv}>
                     <label><strong>Offer</strong></label>

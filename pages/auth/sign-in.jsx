@@ -29,11 +29,9 @@ const SignIn = () => {
         const {error, user} = await signInUser(formData)
         console.log(error, user)
         if (error) {
-            toast.error('ERRRORR')
             return
         }
         if (user) {
-            toast.success('yayy')
             router.push('/')
             return
         }
@@ -41,6 +39,8 @@ const SignIn = () => {
     }
   return (
     <div className={styles.pageContainer}>
+        <br />
+    <div className="blueRowSmall"></div>
       <div>
         <header>
             <h1>Sign in</h1>

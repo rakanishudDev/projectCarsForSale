@@ -1,5 +1,5 @@
 .pageContainer {
-    margin: 0 2rem;
+   
     display: flex;
     flex-direction: column;
     gap: 5rem;
@@ -7,6 +7,7 @@
 
 }
 .accountContainer {
+    margin: 0 2rem;
     display: flex;
     justify-content: space-between;
     
@@ -37,7 +38,16 @@
     color:rgb(0, 119, 255);
 }
 .myListingsContainer {
+    margin: 0 2rem;
     display: flex;
     flex-direction: column;
-    width: 1200px;
+    
+}
+.heading {
+    font-weight: 500;
+    
+    padding: 0 0.5rem;
+    
+    
+    
 }

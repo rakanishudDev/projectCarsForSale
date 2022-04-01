@@ -19,6 +19,7 @@
     
 }
 .ul a {
+    
     padding: 0.5rem 0.5rem;
     transition: 0.3s;
 }
@@ -26,7 +27,8 @@
     transition: 0.1s;
 }
 .ul a:hover {
-    color:rgb(0, 119, 255)
+    background-color: rgb(113, 173, 241);
+    color: white;
 }
 .ul li:hover {
     transform: scale(1.1);

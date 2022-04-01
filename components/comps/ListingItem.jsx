@@ -1,7 +1,11 @@
 import styles from '../../styles/ListingItem.module.css'
 import Link from 'next/link'
+import { saveListing } from '../../functions/listingFunction'
 
 const ListingItem = ({data, id, myPrivate, onEdit}) => {
+    const save = () => {
+        saveListing(id)
+    }
   return (
     <div className={styles.itemContainer}>
         <h3 className={styles.smallScreenItemName}>{data.name}</h3>
@@ -35,7 +39,7 @@ const ListingItem = ({data, id, myPrivate, onEdit}) => {
                 </div> 
                 : 
                 <div className={styles.itemFavoriteDiv}>
-                    <img className={styles.heartIcon} alt="favorite" src="/svg/heart.svg" />
+                    <img onClick={save} className={styles.heartIcon} alt="favorite" src="/svg/heart.svg" />
                 </div>}
             
         </div>

@@ -37,6 +37,8 @@ const {email, name, location,  username, password, passwordConfirm} = formData;
   }
   return (
     <div className={styles.pageContainer}>
+      <br />
+    <div className="blueRowSmall"></div>
       <div>
         <header>
             <h1>Sign Up</h1>

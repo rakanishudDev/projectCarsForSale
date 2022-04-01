@@ -8,6 +8,8 @@ import SpecialOffer from '../components/home/SpecialOffer'
 export default function Home() {
   return (
     <div className={styles.container}>
+      <br />
+    <div className="blueRowSmall"></div>
       <Search />
       <main className={styles.main}>
         <Reccomended />

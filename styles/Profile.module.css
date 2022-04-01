@@ -18,9 +18,12 @@
     border-radius: 50%;
     border: solid rgba(0, 0, 0, 0.4) 2px;
 }
-.profileDetails {
-    display: flex;
-    flex-direction: column;
+.profileDetailsTable {
+    height: 100px;
+}
+.profileDetailsTable {
+    margin-left: 0.5rem;
+    
 }
 .profileUsername {
     font-weight: bold;
