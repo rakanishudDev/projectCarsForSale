@@ -5,7 +5,6 @@ import {v4 as uuidv4} from 'uuid';
 import { db } from '../firebase.config';
 import {toast} from 'react-toastify';
 
-
 // Create a Listing ==>
 export const createListing = async (formData) => {
   const auth = getAuth()
@@ -244,6 +243,12 @@ export const updateListing = async (formData, slug, changeImgs) => {
 // Save Listings ==>
 export const saveListing = async (docId) => {
   const auth = getAuth()
+  let redirect = false
+  console.log(auth._currentUser )
+  if (auth._currentUser == null) {
+    redirect = true
+    return redirect
+  }
   const listingRef = doc(db, 'users', auth.currentUser.uid);
   const docSnap = await getDoc(listingRef);
   let ok = true
@@ -259,10 +264,12 @@ export const saveListing = async (docId) => {
       favorites
     })
     toast.info('Listing saved')
-    return
+    redirect = false
+    return redirect
   } else {
     toast.warning('Listing is already saved');
-    return
+    redirect = false
+    return redirect
   }
 
 }

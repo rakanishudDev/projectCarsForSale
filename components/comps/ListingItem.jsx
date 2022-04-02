@@ -1,10 +1,16 @@
 import styles from '../../styles/ListingItem.module.css'
 import Link from 'next/link'
 import { saveListing } from '../../functions/listingFunction'
+import {useRouter} from 'next/router'
 
 const ListingItem = ({data, id, myPrivate, onEdit}) => {
-    const save = () => {
-        saveListing(id)
+    const router = useRouter()
+    const save = async () => {
+        const redirect = await saveListing(id)
+        if (redirect) {
+            console.log(redirect)
+            router.push('/auth/sign-in')
+        }
     }
   return (
     <div className={styles.itemContainer}>
