@@ -43,6 +43,7 @@
 }
 
 .categoryHeader {
+  font-weight: 500;
   margin: 18px 0;
   padding: 0.1rem 1rem;
   
@@ -89,4 +90,41 @@
   background-color:rgb(113, 173, 241);
   border-bottom: solid rgb(0, 0, 0) 1px;
 }
+.header {
+  font-weight: 500;
 
+  padding: 0 0.5rem;
+}
+.pageNumbers {
+  display: flex;
+  gap: 3rem;
+  border: solid 1px black;
+  padding: 5px 16px;
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+}
+.numbers {
+  text-align: center;
+  
+}
+.nr,
+.nrInfo {
+  margin: 0;
+}
+.popularMakes {
+  margin-top: 19px;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 19px; 
+  flex-wrap: wrap;
+}
+.popularMake {
+  margin: 0;
+  cursor: pointer;
+  font-weight: 400;
+  transition: 0.1s;
+}
+.popularMake:hover {
+  box-shadow: 0 4px 0px 0 rgb(113, 173, 241);
+}

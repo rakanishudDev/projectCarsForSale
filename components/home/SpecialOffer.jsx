@@ -34,7 +34,7 @@ const SpecialOffer = () => {
     }, [])
   return (
     <div>
-            <h3 className={styles.categoryHeader}>Special Offers</h3>
+            <h3 className={styles.categoryHeader}>SPECIAL OFFERS</h3>
             <div className={styles.row}>
                 {listings ? listings.map((doc) => {
 

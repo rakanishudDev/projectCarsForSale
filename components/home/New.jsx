@@ -36,7 +36,7 @@ const New = () => {
   return (
     <div className={styles.rowContainer}>
             <div>
-                <h3 className={styles.categoryHeader}>New</h3>
+                <h3 className={styles.categoryHeader}>NEW</h3>
             <div className={styles.row}>
                 {listings ? listings.map((doc) => {
 

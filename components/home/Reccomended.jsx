@@ -37,7 +37,7 @@ const Reccomended = () => {
   return (
     <div className={styles.rowContainer}>
             <div>
-                <h3 className={styles.categoryHeader}>Recommended</h3>
+                <h3 className={styles.categoryHeader}>RECOMMENDED</h3>
               
             <div className={styles.row}>
                 {listings ? listings.map((doc) => {

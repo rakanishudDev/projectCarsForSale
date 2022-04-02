@@ -104,7 +104,13 @@ export const createListing = async (formData) => {
 
       const docRef = await addDoc(collection(db, 'listings'), formDataCopy).catch(err => error = true)
       const docRef2 = await addDoc(collection(db, 'transport'), formDataCopy).catch(err => error = true)
-
+      const productRef = doc(db, 'numbers', 'products');
+      const productsSnap = await getDoc(productRef, {userRef: formData.userRef});
+      const productsCount = productsSnap.data()
+      console.log(productsCount)
+      await updateDoc(productRef, {
+        products: productsCount.products + 1
+      })
       toast.success('Listing saved!')
       //setLoading(false);
       ok = true
@@ -114,6 +120,16 @@ export const createListing = async (formData) => {
       }
 
   return {ok, error}
+}
+
+export const updateCount = async () => {
+  const productRef = doc(db, 'numbers', 'products');
+  const productsSnap = await getDoc(productRef, {userRef: formData.userRef})
+  let productsCount = productsSnap.data()
+  console.log(productsCount)
+  await updateDoc(productRef, {
+    products: productsCount.products + 1
+  })
 }
 
 
