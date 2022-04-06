@@ -71,7 +71,7 @@ const New = () => {
                 >
                 {listings.map((doc) => {
 
-                        return <SwiperSlide>
+                        return <SwiperSlide key={doc.id}>
                             <div onClick={() => onClick(doc.id)} key={doc.id} className={styles.listingContainer}>
                                     
                                 <div style={{background: `url(${doc.data.imgUrls[0]}) center no-repeat`, backgroundSize: "cover"}} key={doc.id}className={styles.imgDiv}>
