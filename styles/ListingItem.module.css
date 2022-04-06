@@ -46,7 +46,7 @@
     transition: 0.1s;
 }
 .itemName:hover {
-    color:rgb(0, 119, 255)
+    color:rgb(37, 119, 213);
 }
 .offerBadge {
     width: fit-content;

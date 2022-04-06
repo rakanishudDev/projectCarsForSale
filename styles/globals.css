@@ -48,16 +48,14 @@ a {
   background: white;
 }
 .sellButton {
-  border-top: solid 2px black; 
-  /* border-bottom: solid 1px black; */
-  box-shadow: black 1px 0 0 ;
+  box-shadow: black 0 0 1px 0;
   cursor: pointer;
   transition: 0.2s;
 }
 .sellButton:hover {
-  background-color: rgb(113, 173, 241);
+  /* background-color: rgb(113, 173, 241); */
+  background-color: #6e849c;
   color: white;
-
   border-color: black;
 
   
@@ -124,7 +122,7 @@ a {
   width: 1rem;
 }
 .blueRow {
-  background-color: rgb(113, 173, 241);
+  background-color: #6e849c;
   height: 8px;
   width: 100%;
 }
@@ -133,3 +131,5 @@ a {
   height: 4px;
   width: 100%;
 }
+
+

@@ -35,7 +35,7 @@
     cursor: pointer;
 }
 .settings li:hover {
-    color:rgb(0, 119, 255);
+    color:rgb(37, 119, 213);
 }
 .myListingsContainer {
     margin: 0 2rem;
@@ -45,9 +45,57 @@
 }
 .heading {
     font-weight: 500;
-    
     padding: 0 0.5rem;
-    
-    
-    
 }
+.profileFieldset {
+    margin: 0;
+    border-style: solid;
+    border-color: #6e849c;
+}
+
+/*             
+==>    My Listings
+*/
+.listingsButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    margin-bottom: 2rem;
+}
+.listingsToggleOn {
+    margin: 0;
+    padding: 4px 1rem;
+    cursor: pointer;
+    font-weight: 500;
+
+}
+.listingsToggleOff {
+    margin: 0;
+ 
+    padding: 4px 1rem;
+    transform: scale(0.95);
+    color: gray;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+
+}
+.listingsToggleOff:hover {
+    transform: scale(1);
+
+}
+.listingsToggleOnDiv {
+    box-shadow: 0 2px 2px 0px #6e849c;
+    transition: box-shadow 0.2s;
+}
+.listingsToggleOffDiv {
+
+    border-top: solid 1px #6e849c;
+   
+
+}
+
+
+

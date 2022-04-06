@@ -49,7 +49,6 @@ const Browse = ({cars}) => {
 
   return (<>
     <br />
-    <div className="blueRowSmall"></div>
     <Search />
     
     

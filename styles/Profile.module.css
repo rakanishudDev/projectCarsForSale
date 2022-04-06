@@ -16,7 +16,7 @@
 .profileAvatar {
     width: 100px;
     border-radius: 50%;
-    border: solid rgba(0, 0, 0, 0.4) 2px;
+    border: solid #6e849c 2px;
 }
 .profileDetailsTable {
     height: 100px;
@@ -50,10 +50,14 @@
     font-size: 1rem;
     width: 250px;
     transition: 0.2s;
+    border-width: 2px;
+    border-color: #6e849c;
     
   }
 .changeSave:hover {
     color: white;
-    background-color: rgb(113, 173, 241);
+    background-color: #6e849c;
+    border: solid 2px black;
 
   }
+  

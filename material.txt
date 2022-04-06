@@ -1,0 +1,6 @@
+{
+  https://swiperjs.com/react
+  https://stackoverflow.com/questions/70324190/custom-arrow-swiper-slider-next-js-sass
+  https://codesandbox.io/s/prod-darkness-o483y?file=/src/App.js
+  ? https://codesandbox.io/s/stoic-shaw-q35wq?file=/src/App.js
+}

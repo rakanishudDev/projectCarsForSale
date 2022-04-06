@@ -16,12 +16,21 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 .row {
   display: flex;
   gap: 1rem;
   margin-bottom: 21px;
+}
+  
+.rowSwiper {
+  max-width: 1114px;
+  
+  
+}
+.swiperSlide {
+  max-width: 210px;
 }
 .listingContainer {
   cursor: pointer;
@@ -29,6 +38,7 @@
   border: solid rgb(0, 0, 0) 1px;
   border-radius: 1rem;
   background-color: white;
+  max-width: 210px;
   
 }
 .imgDiv {
@@ -83,16 +93,12 @@
 }
 .bottomBlueLine {
   height: 8px;
-  background-color:rgb(113, 173, 241);
+  background-color:#6e849c;
 }
-.topBlueLine {
-  height: 8px;
-  background-color:rgb(113, 173, 241);
-  border-bottom: solid rgb(0, 0, 0) 1px;
-}
-.header {
-  font-weight: 500;
 
+.header {
+  margin-bottom: 0;
+  font-weight: 500;
   padding: 0 0.5rem;
 }
 .pageNumbers {
@@ -112,11 +118,11 @@
   margin: 0;
 }
 .popularMakes {
-  margin-top: 19px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 19px; 
+  margin-bottom: 50px; 
   flex-wrap: wrap;
 }
 .popularMake {
@@ -126,5 +132,26 @@
   transition: 0.1s;
 }
 .popularMake:hover {
-  box-shadow: 0 4px 0px 0 rgb(113, 173, 241);
+  box-shadow: 0 4px 0px 0 #49719d;
+}
+.customDiv {
+  margin-bottom: 21px;
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+.buttonNext,
+.buttonPrev {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  
+}
+.leftArrow {
+  transform: rotate(180deg) scale(1.5);
+}
+.rightArrow {
+  transform: scale(1.5);
 }

@@ -122,15 +122,6 @@ export const createListing = async (formData) => {
   return {ok, error}
 }
 
-export const updateCount = async () => {
-  const productRef = doc(db, 'numbers', 'products');
-  const productsSnap = await getDoc(productRef, {userRef: formData.userRef})
-  let productsCount = productsSnap.data()
-  console.log(productsCount)
-  await updateDoc(productRef, {
-    products: productsCount.products + 1
-  })
-}
 
 
 

@@ -73,7 +73,6 @@ const ListingPage = ({listing, owner}) => {
   return (
       <>
       <br />
-    <div className="blueRowSmall"></div>
       <div className={styles.pageContainer}>
           <br />
           <div className={styles.nameContainer}>

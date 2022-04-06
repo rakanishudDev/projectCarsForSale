@@ -5,6 +5,7 @@ import ListingItem from './ListingItem'
 import { db } from '../../firebase.config'
 import {useRouter} from 'next/router'
 import Loading from './Loading'
+import styles from '../../styles/Account.module.css'
 
 
 
@@ -44,35 +45,36 @@ const MyListings = () => {
         }
         fetchUserListings()
     }, [userId])
-    console.log(listings)
   
   return (<>
-
-   <div style={{display: "flex", gap: "3rem", marginTop: "1rem"}}>
-    <div style={{display: "flex", flexDirection: "column"}}>
-        <div>
-        <h2  style={{width: "134px",cursor: "pointer", fontWeight: "500",marginTop: "0", padding: "0 0.5rem"}}>{toggle === 'listings' ? "My listings" : "Favorites"}</h2>
+    <div className={styles.listingsButtons}>
+        <div className={ toggle === 'listings' ? styles.listingsToggleOnDiv : styles.listingsToggleOffDiv}>
+            <h2 onClick={() => setToggle('listings')} className={ toggle === 'listings' ? styles.listingsToggleOn : styles.listingsToggleOff}>My listings</h2>
         </div>
-        
-        <div>
-        <h2 onClick={() => setToggle(toggle === 'favorites' ? 'listings' :'favorites')} style={{fontSize: "1.3rem", color: "gray",width: "100%", cursor: "pointer", fontWeight: "500", padding: "0 0.5rem"}}>{toggle !== 'listings' ? "My listings" : "Favorites"}</h2>
+        <div className={ toggle === 'favorites' ? styles.listingsToggleOnDiv : styles.listingsToggleOffDiv}>
+            <h2 onClick={() => setToggle('favorites')} className={ toggle === 'favorites' ? styles.listingsToggleOn : styles.listingsToggleOff}>Favorites</h2>
+        </div>
+        <div className={ toggle === 'history' ? styles.listingsToggleOnDiv : styles.listingsToggleOffDiv}>
+            <h2 onClick={() => setToggle('history')} className={ toggle === 'history' ? styles.listingsToggleOn : styles.listingsToggleOff}>History</h2>
         </div>
     </div>
     
-   { toggle === 'listings' ? <div className="listingItemsContainer">
-        {listings ? listings.map(doc => {
-            return <ListingItem myPrivate={true} key={doc.id} id={doc.id} data={doc.data} onEdit={onEdit}  />
-        }) : <div className="loadingContainer"><Loading /></div>}
-        
-    </div>
-    :
     <div className="listingItemsContainer">
-        {favorites ? favorites.map(doc => {
-         
-            return <ListingItem myPrivate={false} key={doc.id} id={doc.id} data={doc.data} onEdit={onEdit}  />
-        }) : <div className="loadingContainer"><Loading /></div>}
-        
-    </div>}
+        {
+        !listings ?
+            <div className="loadingContainer"><Loading /></div>
+        :
+        <>
+            {toggle === 'listings' && listings.map(doc => {
+                    return <ListingItem myPrivate={true} key={doc.id} id={doc.id} data={doc.data} onEdit={onEdit}  />
+                    })}
+
+            {toggle === 'favorites' && favorites.map(doc => {
+                    return <ListingItem myPrivate={false} key={doc.id} id={doc.id} data={doc.data} onEdit={onEdit}  />
+                    })}
+        </>
+        }
+
     </div>
     </>
   )

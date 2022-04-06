@@ -16,7 +16,7 @@
     gap: 1rem;
 }
 .table {
-    background-color: rgb(152, 152, 152);
+    background-color: #6e849c;
     margin: 1rem 0 0 1rem;
     background-color: none;
     
@@ -86,6 +86,8 @@
     border: solid 1px black;
 }
 .contactFieldset {
+    border-color: #6e849c;
+    border-style: solid;
     background-color: white;
     width: fit-content;
     margin: 1rem 0 0 1rem;
@@ -142,7 +144,7 @@
 .descriptionTextarea {
     display: flex;
     resize: none;
-    border: solid 2px rgb(152, 152, 152);
+    border: solid 2px #6e849c;
     background: white;
     margin-top: 1rem;
     font-size: 1rem;

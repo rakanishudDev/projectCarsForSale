@@ -22,17 +22,16 @@ const Account = () => {
       <div>
    
       <br />
-      <div className="blueRowSmall"></div>
         <div className={styles.accountContainer}>
-          <div>
-            <h2 className={styles.heading}>Profile</h2>
+          <fieldset className={styles.profileFieldset}>
+            <legend><h2 className={styles.heading}>Profile</h2></legend>
               
               {/* <button className={styles.signOut} onClick={signOut} >Sign Out</button> */}
             
             <Profile />
-          </div>
+          </fieldset>
           <div className={styles.accountSettings}>
-            <h3 style={{marginTop: ""}}>Account Settings</h3>
+            <h2 style={{fontWeight: "500"}}>Account Settings</h2>
             <ul className={styles.settings}>
               <li>Change Account Email</li>
               <li>Change Password</li>
@@ -43,7 +42,6 @@ const Account = () => {
         </div>
       </div>
       <div>
-      <div className="blueRowSmall"></div>
       <div className={styles.myListingsContainer}>
 
         
