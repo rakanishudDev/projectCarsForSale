@@ -6,7 +6,7 @@
 }
 .formBackground {
     overflow: hidden;
-    border-bottom: solid rgb(113, 173, 241) 8px;
+    border-bottom: solid #6e849c 8px;
     border-radius: 1rem;
     background-color:rgba(0, 0, 0, 0.1);
 }

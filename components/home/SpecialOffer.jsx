@@ -14,6 +14,7 @@ const SpecialOffer = () => {
     const nextButtonRef = useRef(null)
     const [swiper, setSwiper] = useState()
     const [listings, setListings] = useState(null);
+    const [hover, setHover] = useState(false)
     const router = useRouter()
     const onClick = (id) => {
         router.push("/listings/" + id)
@@ -49,7 +50,8 @@ const SpecialOffer = () => {
     }, [swiper])
 
   return (
-    <div>
+    <div className={styles.rowContainer}>
+        <div>
             <h3 className={styles.categoryHeader}>SPECIAL OFFERS</h3>
 
             { listings ? <div className={styles.customDiv}>
@@ -71,9 +73,10 @@ const SpecialOffer = () => {
                 >
                 {listings.map((doc) => {
                         return <SwiperSlide key={doc.id}>
-                                <div onClick={() => onClick(doc.id)} key={doc.id} className={styles.listingContainer}>
-                                    <div style={{background: `url(${doc.data.imgUrls[0]}) center no-repeat`, backgroundSize: "cover"}} key={doc.id}className={styles.imgDiv}>
-
+                                <div onMouseOver={() => setHover(doc.id)} onMouseOut={() => setHover(false)} onClick={() => onClick(doc.id)} key={doc.id} className={styles.listingContainer}>
+                                    <div className={styles.imgParentDiv}>
+                                    <div style={{background: `url(${doc.data.imgUrls[0]}) center no-repeat`, backgroundSize: "cover"}} key={doc.id} className={ hover !== doc.id ? styles.imgDiv : styles.imgDivZoom}>
+                                    </div>
                                     </div>
                                     <div className={styles.bottomBlueLine}>
                                     </div>
@@ -96,6 +99,7 @@ const SpecialOffer = () => {
                     <img className={styles.rightArrow} src="/svg/keyboardArrowRightIcon.svg" alt="arrow" />
                 </div>
             </div> : <div className="loadingContainer"><Loading /></div>}
+            </div>
         </div>
   )
 }

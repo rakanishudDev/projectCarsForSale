@@ -41,9 +41,11 @@ export default function Home() {
           </div>
         </div> */}
 
-        <Reccomended />
+        {/* <Reccomended /> */}
         <SpecialOffer />
-        <New />
+        <New /> 
+
+
       </main>
 
       

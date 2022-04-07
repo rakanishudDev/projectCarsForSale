@@ -5,6 +5,7 @@ import {getDocs, collection} from 'firebase/firestore'
 import Search from "../components/layout/Search"
 import {useState} from 'react'
 import { searchWithCategory } from "../functions/searchFunctions"
+import styles from '../styles/Browse.module.css'
 
 export const getStaticProps = async () => {
   const listingRef = collection(db, 'transport')
@@ -54,12 +55,13 @@ const Browse = ({cars}) => {
     
 
     <br />
+    {/* <div className={styles.browseBar}></div> */}
     <div className="browse">
-        
+        <div className={styles.browseInner}>
         <Category changeSearchPath={changeSearchPath} onSearch={onSearch} />
 
         <BrowseListings carsListings={carsListings} loading={loading} />
-        
+        </div>
     </div>
     </>)
 }

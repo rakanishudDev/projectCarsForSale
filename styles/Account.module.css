@@ -7,7 +7,7 @@
 
 }
 .accountContainer {
-    margin: 0 2rem;
+    margin: 0 3rem;
     display: flex;
     justify-content: space-between;
     
@@ -38,7 +38,7 @@
     color:rgb(37, 119, 213);
 }
 .myListingsContainer {
-    margin: 0 2rem;
+    margin: 0 3rem;
     display: flex;
     flex-direction: column;
     
@@ -48,9 +48,12 @@
     padding: 0 0.5rem;
 }
 .profileFieldset {
+    background-color:rgb(0, 0, 0, 0.05);
     margin: 0;
     border-style: solid;
+    border-width: 1px;
     border-color: #6e849c;
+    box-shadow: 0 2px 2px 0px #6e849c;
 }
 
 /*             
@@ -59,8 +62,9 @@
 .listingsButtons {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
-    
+    width: 1200px;
     margin-bottom: 2rem;
 }
 .listingsToggleOn {
@@ -88,13 +92,16 @@
 }
 .listingsToggleOnDiv {
     box-shadow: 0 2px 2px 0px #6e849c;
+    border-bottom: solid 1px #6e849c;
     transition: box-shadow 0.2s;
 }
 .listingsToggleOffDiv {
-
     border-top: solid 1px #6e849c;
-   
-
+}
+.toggleCont {
+    border-top: solid 1px #6e849c;
+    height: 41px;
+    width: 100%;
 }
 
 

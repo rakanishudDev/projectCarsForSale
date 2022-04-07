@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { saveListing } from '../../functions/listingFunction'
 import {useRouter} from 'next/router'
 
-const ListingItem = ({data, id, myPrivate, onEdit}) => {
+const ListingItem = ({data, id, myPrivate, onEdit, onDelete}) => {
     const router = useRouter()
     const save = async () => {
         const redirect = await saveListing(id)
@@ -40,7 +40,7 @@ const ListingItem = ({data, id, myPrivate, onEdit}) => {
             {myPrivate ? 
                 <div className={styles.itemFavoriteDiv}>
                     <img onClick={() => onEdit(id)} className={styles.editIcon} alt="favorite" src="/svg/edit.svg" />
-                    <img className={styles.deleteIcon} alt="favorite" src="/svg/delete.svg" />
+                    <img onClick={() => onDelete(id)} className={styles.deleteIcon} alt="favorite" src="/svg/delete.svg" />
                     
                 </div> 
                 : 

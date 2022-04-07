@@ -2,3 +2,32 @@
     display: flex;
     justify-content: center;
 }
+.browseInner {
+    display: flex;
+    gap: 2rem;
+    border-top: solid 1px #6e849c;
+    
+}
+.browseBar {
+    height: 2rem;
+    border: solid 1px #6e849c;
+    margin-bottom: 1rem
+}
+
+/* 
+==> BrowseListings  
+*/
+
+.sort {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    gap: 6px;
+    
+}
+.sort p {
+    margin: 0;
+}

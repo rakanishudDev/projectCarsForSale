@@ -8,9 +8,7 @@ const Navbar = () => {
   const auth = getAuth()
   const [userOnline, setUserOnline] = useState(null)
   const isMounted = useRef(true)
-  const onClickCreateListing = () => {
 
-  }
   useEffect(() => {
     if (isMounted) {
       onAuthStateChanged(auth, user => {
@@ -43,7 +41,7 @@ const Navbar = () => {
       <div className={styles.Navbar}>
         
         <Link href="/account/create-listings">
-        <a className="sellButton-a"><button onClick={onClickCreateListing} type="button" className="sellButton">Create a Listing</button></a>
+        <a className="sellButton-a"><button type="button" className="sellButton">Create a Listing</button></a>
         </Link>
 
           <nav>

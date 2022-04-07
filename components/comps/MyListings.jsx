@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import {getAuth} from 'firebase/auth'
-import {getDocs, collection, query, where, orderBy, getDoc, doc} from 'firebase/firestore'
+import {getDocs, collection, query, where, orderBy, getDoc, doc, deleteDoc} from 'firebase/firestore'
 import ListingItem from './ListingItem'
 import { db } from '../../firebase.config'
 import {useRouter} from 'next/router'
 import Loading from './Loading'
 import styles from '../../styles/Account.module.css'
+import {toast} from 'react-toastify'
 
 
 
@@ -19,6 +20,15 @@ const MyListings = () => {
     const router = useRouter()
     const onEdit = (listingId) => router.push('/account/edit-listings/' + listingId) 
 
+    const onDelete = async (docId) => {
+       if ( window.confirm('Are you sure you want to Delete?')) {
+            await deleteDoc(doc(db, 'transport', docId));
+            const updatedListings = listings.filter(listing => listing.id !== docId);
+            setListings(updatedListings)
+            toast.info('Listing deleted')
+       }
+    }
+    
     useEffect(() => {
 
         const fetchUserListings = async () => {
@@ -48,7 +58,7 @@ const MyListings = () => {
   
   return (<>
     <div className={styles.listingsButtons}>
-        <div className={ toggle === 'listings' ? styles.listingsToggleOnDiv : styles.listingsToggleOffDiv}>
+        <div style={{minWidth: "150px"}} className={ toggle === 'listings' ? styles.listingsToggleOnDiv : styles.listingsToggleOffDiv}>
             <h2 onClick={() => setToggle('listings')} className={ toggle === 'listings' ? styles.listingsToggleOn : styles.listingsToggleOff}>My listings</h2>
         </div>
         <div className={ toggle === 'favorites' ? styles.listingsToggleOnDiv : styles.listingsToggleOffDiv}>
@@ -56,6 +66,9 @@ const MyListings = () => {
         </div>
         <div className={ toggle === 'history' ? styles.listingsToggleOnDiv : styles.listingsToggleOffDiv}>
             <h2 onClick={() => setToggle('history')} className={ toggle === 'history' ? styles.listingsToggleOn : styles.listingsToggleOff}>History</h2>
+        </div>
+        <div className={styles.toggleCont}>
+            
         </div>
     </div>
     
@@ -66,7 +79,7 @@ const MyListings = () => {
         :
         <>
             {toggle === 'listings' && listings.map(doc => {
-                    return <ListingItem myPrivate={true} key={doc.id} id={doc.id} data={doc.data} onEdit={onEdit}  />
+                    return <ListingItem myPrivate={true} key={doc.id} id={doc.id} data={doc.data} onEdit={onEdit} onDelete={onDelete}  />
                     })}
 
             {toggle === 'favorites' && favorites.map(doc => {

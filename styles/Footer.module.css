@@ -19,3 +19,27 @@
     justify-self: flex-start;
     width: 70px;
 }
+.ul {
+  font-size: 1rem;
+  list-style: none;
+  display: flex;
+  margin: 16px 0;
+  padding: 0;
+  
+}
+.ul a {
+  
+  padding: 0.5rem 0.5rem;
+  transition: 0.3s;
+}
+.ul li {
+  transition: 0.1s;
+}
+.ul a:hover {
+  /* background-color: rgb(113, 173, 241); */
+  background-color: #6e849c;
+  color: white;
+}
+.ul li:hover {
+  transform: scale(1.1);
+}

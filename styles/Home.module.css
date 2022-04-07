@@ -41,6 +41,9 @@
   max-width: 210px;
   
 }
+.imgParentDiv {
+  overflow: hidden;
+}
 .imgDiv {
   
   min-width: 210px;
@@ -48,7 +51,20 @@
   max-width: 210px;
   max-height: 150px;
   border-bottom: solid rgb(0, 0, 0) 1px;
+  transition: 0.5s;
   
+}
+.imgDivZoom {
+  transform: scale(1.2);
+  min-width: 210px;
+  min-height: 150px;
+  max-width: 210px;
+  max-height: 150px;
+  border-bottom: solid rgb(0, 0, 0) 1px;
+  transition: 0.5s;
+  
+}
+.imgDiv:hover {
   
 }
 
@@ -94,6 +110,12 @@
 .bottomBlueLine {
   height: 8px;
   background-color:#6e849c;
+  transition: background-color 0.2s;
+}
+.bottomBlueLineOff {
+  height: 8px;
+  background-color: none;
+  transition: background-color 0.5s;
 }
 
 .header {
@@ -146,12 +168,28 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 5px;
+  margin: 5px;
   
+  border-radius: 0.1rem;
+  
+}
+.buttonPrev {
+  border-left: solid 1px #6e849c69;
+  padding-left: 8px;
+}
+.buttonNext {
+  border-right: solid 1px #6e849c69;
+  padding-right: 8px;
+
 }
 .leftArrow {
   transform: rotate(180deg) scale(1.5);
 }
 .rightArrow {
   transform: scale(1.5);
+}
+.newGrid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 1rem;
 }

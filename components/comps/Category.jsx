@@ -100,9 +100,9 @@ const Category = ({onSearch}) => {
         
         <form onSubmit={onSubmit}>
         <div className={styles.selectContainer}>
-            <label><strong>Mark</strong></label>
+            <label>Mark</label>
             <AutoMarkSelect onSelectVehicle={onSelectVehicle}/>
-            <label><strong>Vehicle Type</strong></label>
+            <label>Vehicle Type</label>
             <select className={styles.categorySelect} defaultValue="hidden" id="vehicleType" onChange={onSelectVehicle}>
                 <optgroup label="Vehicle Type">
                 <option hidden value="hidden">All</option>
@@ -120,7 +120,7 @@ const Category = ({onSearch}) => {
                 <option>Communal machinery</option>
                 </optgroup>
             </select>
-            <label><strong>Body Type</strong></label>
+            <label>Body Type</label>
             <select className={styles.categorySelect} defaultValue="hidden" id="bodytype" onChange={onSelectVehicle}>
                 <option hidden value="hidden"  >All</option>
                 <optgroup label="Body Type">
@@ -239,7 +239,7 @@ const Category = ({onSearch}) => {
                 ) }
                 
             </select>
-            <label><strong>Fuel</strong></label>
+            <label>Fuel</label>
             <select className={styles.categorySelect} defaultValue="hidden" id="fuel" onChange={onSelectVehicle}>
                 <optgroup label="Fuel" >
                 <option value="hidden" hidden>All</option>
@@ -253,7 +253,7 @@ const Category = ({onSearch}) => {
                 <option>ethanol</option>
                 </optgroup>
             </select>
-            <label><strong>Transmission</strong></label>
+            <label>Transmission</label>
             <select className={styles.categorySelect} defaultValue="hidden" id="transmission" onChange={onSelectVehicle}
             >
                 <optgroup label="Transmission">
@@ -264,7 +264,7 @@ const Category = ({onSearch}) => {
                 <option>semi-automatic</option>
                 </optgroup>
             </select>
-            <label><strong>Drivetrain</strong></label>
+            <label>Drivetrain</label>
             <select className={styles.categorySelect} defaultValue="hidden" id="drivetrain" onChange={onSelectVehicle} 
             >
                 <optgroup label="Drivetrain">
@@ -275,7 +275,7 @@ const Category = ({onSearch}) => {
                 <option>four-wheel drive</option>
                 </optgroup>
             </select>
-            <label><strong>Year</strong></label>
+            <label>Year</label>
             <select className={styles.categorySelect} id="year" defaultValue="hidden" onChange={onSelectVehicle} >
                 <optgroup label="Year">
                 <option hidden value="hidden">All</option>
@@ -408,7 +408,7 @@ const Category = ({onSearch}) => {
                 </optgroup>
             </select>
 
-            <label><strong>Price</strong></label>
+            <label>Price</label>
             <div className={styles.priceDiv}>
                 <input className={styles.categoryPrice} type="number" id="startPrice" onChange={onSelectVehicle} />
                 <span className={styles.separator}>–</span>
@@ -416,12 +416,12 @@ const Category = ({onSearch}) => {
             </div>
             <br />
             <div className={styles.checkboxDiv}>
-                    <label><strong>Offer</strong></label>
+                    <label>Offer</label>
                     <input id="offer" onChange={onSelectVehicle} type="checkbox"/>
                     
                   </div>
             <br />
-            <button className={styles.categorySelect}>Search</button>
+            <button className={styles.categorySearch}><strong>Search</strong></button>
         </div>
         </form>
         <ul className={styles.searchPathContainer}>

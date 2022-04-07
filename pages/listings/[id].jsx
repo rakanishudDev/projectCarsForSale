@@ -63,8 +63,8 @@ const ListingPage = ({listing, owner}) => {
     if (data.data.offer) {
         discount = data.data.regularPrice - data.data.discountedPrice
     }
+    const time = new Date(data.data.timestamp.seconds * 1000).toLocaleDateString() + ' at ' + new Date(data.data.timestamp.seconds).toLocaleTimeString()
     useEffect(() => {
-        
         textarea.current.style.height = 10 + textarea.current.scrollHeight + 'px';
         textarea.current.oninput = function() {
             textarea.current.style.height = 10 + textarea.current.scrollHeight + 'px';
@@ -179,6 +179,7 @@ const ListingPage = ({listing, owner}) => {
                         </div>
                     </div>
                 </fieldset>
+                <div className={styles.time}><p>{time}</p></div>
             </div>
             <div className={styles.imgContainer}>
                 {data.data.imgUrls.map(img => {

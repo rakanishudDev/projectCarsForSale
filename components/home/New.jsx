@@ -14,6 +14,7 @@ const New = () => {
     const prevButtonRef = useRef(null)
     const [swiper, setSwiper] = useState()
     const [listings, setListings] = useState(null);
+    const [hover, setHover] = useState(false)
     const router = useRouter()
     const onClick = (id) => {
         router.push("/listings/" + id)
@@ -22,7 +23,7 @@ const New = () => {
         let array = []
         const fetchListings = async () => {
             const listingsRef = collection(db, 'transport')
-            const q = query(listingsRef, orderBy('timestamp', 'desc'), limit(10))
+            const q = query(listingsRef, orderBy('timestamp', 'desc'), limit(15))
             const listingsSnap = await getDocs(q);
             if (listingsSnap) {
                 console.log(listingsSnap)
@@ -40,16 +41,16 @@ const New = () => {
 
     }, [])
 
-    useEffect(() => {
-        if (swiper) {
-            swiper.params.navigation.prevEl = prevButtonRef.current
-            swiper.params.navigation.nextEl = nextButtonRef.current
-            swiper.navigation.init()
-            swiper.navigation.update()
-        }
-    }, [swiper])
+    // useEffect(() => {
+    //     if (swiper) {
+    //         swiper.params.navigation.prevEl = prevButtonRef.current
+    //         swiper.params.navigation.nextEl = nextButtonRef.current
+    //         swiper.navigation.init()
+    //         swiper.navigation.update()
+    //     }
+    // }, [swiper])
   
-  return (
+  if (false) return (
     <div className={styles.rowContainer}>
             <div>
                 <h3 className={styles.categoryHeader}>NEW</h3>
@@ -95,6 +96,31 @@ const New = () => {
             </div> : <div className="loadingContainer"><Loading /></div>}
         </div>
     </div>
+  )
+
+ return (
+    <div >
+            <h3 className={styles.categoryHeader}>NEW</h3>
+            
+            <div style={{margin: "0 50px"}} className={styles.newGrid}>
+                {listings && listings.map((doc) => {
+
+                    return <div onMouseOver={() => setHover(doc.id)} onMouseOut={() => setHover(false)} onClick={() => onClick(doc.id)} key={doc.id} className={styles.listingContainer}>
+                            <div className={styles.imgParentDiv}>
+                            <div style={{background: `url(${doc.data.imgUrls[0]}) center no-repeat`, backgroundSize: "cover"}} key={doc.id}className={ hover !== doc.id ? styles.imgDiv : styles.imgDivZoom}>
+                            </div>
+                            </div>
+                            <div className={styles.imgDetails}>
+                                <p className={styles.imageInfo}>{doc.data.make}</p>
+                                <p className={styles.imageInfo}>{doc.data.year}</p>
+                            </div>
+                                <p className={styles.imagePrice}>${doc.data.regularPrice}</p>
+                            <div  className={styles.bottomBlueLine}>
+                            </div>
+                        </div>
+                    })}
+            </div>
+      </div>
   )
 }
 
