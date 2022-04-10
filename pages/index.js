@@ -1,8 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Search from '../components/layout/Search'
-import Reccomended from '../components/home/Reccomended'
 import New from '../components/home/New'
 import SpecialOffer from '../components/home/SpecialOffer'
 export default function Home() {
