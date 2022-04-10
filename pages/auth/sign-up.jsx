@@ -10,6 +10,7 @@ const SignUp = () => {
     email: '',
     name: '',
     location: '',
+    favorites: [],
     username: '',
     password: '',
     passwordConfirm: ''

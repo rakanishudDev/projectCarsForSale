@@ -22,7 +22,8 @@
     font-size: 1rem;
 }
 .label {
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 1.1rem;
     margin-top: 15px;
     margin-bottom: 5px;
 }
@@ -34,18 +35,18 @@
 .formInput {
     font-size: 1rem;
     padding: 0;
-    border-radius: 1rem;
+    border-radius: 0.2rem;
     max-width: 100%;
     padding: 8px;
 }
 .formInputSmall {
     border-radius: 1rem;
-    padding: 5px;
-    width: 90px;
+    padding: 8px;
+    width: 97px;
     font-size: 1rem;
 }
 .formDescription {
-    border-radius: 1rem;
+    border-radius: 0.2rem;
     min-width: 500px;
     max-width: 500px;
     min-height: 250px;
@@ -121,4 +122,54 @@
     background-color: rgb(113, 173, 241);
    
     color: white;
+}
+.imgContainer {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.img {
+    border: solid 1px black;
+    object-fit: cover;
+    width: auto;
+    height: 140px;
+}
+.imgHover {
+    border: solid 1px black;
+    object-fit: cover;
+    width: auto;
+    height: 140px;
+    transform: scale(1.2)
+}
+.imgDiv {
+    overflow: hidden;
+    position: relative;
+}
+.hoverDiv {
+    top: 0;
+    width: 100%;
+    height: 140px;
+    background-color:rgba(0, 0, 0, 0.5);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hoverDivOff {
+    z-index: 100000;
+    top: 0;
+    width: 100%;
+    height: 140px;
+    background-color:rgba(0, 0, 0, 0);
+    position: absolute;
+}
+.hoverText {
+    cursor: pointer;
+    border: solid 1px white;
+    padding: 2px 8px 4px 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    
 }

@@ -46,12 +46,14 @@ const MyListings = () => {
             const userRef = doc(db, 'users', userId)
             const userSnap = await getDoc(userRef)
             let array3 = []
+            if ( userSnap.data().favorites) {
             userSnap.data().favorites.map( async (listing) => {
                 const carRef = doc(db, 'transport', listing)
                 const carSnap = await getDoc(carRef);
                 return array3.push({id: carSnap.id, data: carSnap.data()}) 
             })
             setFavorites(array3)
+            }
         }
         fetchUserListings()
     }, [userId])
@@ -82,7 +84,7 @@ const MyListings = () => {
                     return <ListingItem myPrivate={true} key={doc.id} id={doc.id} data={doc.data} onEdit={onEdit} onDelete={onDelete}  />
                     })}
 
-            {toggle === 'favorites' && favorites.map(doc => {
+            {toggle === 'favorites' && favorites && favorites.map(doc => {
                     return <ListingItem myPrivate={false} key={doc.id} id={doc.id} data={doc.data} onEdit={onEdit}  />
                     })}
         </>

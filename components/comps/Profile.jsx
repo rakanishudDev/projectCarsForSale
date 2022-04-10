@@ -55,7 +55,6 @@ const Profile = () => {
         setChangeDetails(!changeDetails)
     }
     useEffect(() => {
-        console.log(auth.currentUser)
         const fetchUser = async () => {
           const docRef = doc(db, 'users', auth.currentUser.uid);
           const docSnap = await getDoc(docRef);
@@ -63,7 +62,7 @@ const Profile = () => {
           if (docSnap.exists() ) {
             setUser(prevState => {
               setLocationVar(docSnap.data().location)
-              return {...prevState, username: docSnap.data().username, location: docSnap.data().location, favorites: docSnap.data().favorites}
+              return {...prevState, username: docSnap.data().username ? docSnap.data().username : docSnap.data().email, location: docSnap.data().location}
             })
           }
         }

@@ -5,11 +5,14 @@ import { createListing } from '../../functions/listingFunction'
 import {getAuth, onAuthStateChanged} from 'firebase/auth';
 import {useRouter} from 'next/router'
 import Loading from '../../components/comps/Loading';
+import {toast} from 'react-toastify'
 
 
 const CreateListings = () => {
   const router = useRouter()
+  const [hover, setHover] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [imgs, setImgs] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     bodytype: '',
@@ -30,7 +33,7 @@ const CreateListings = () => {
     offer: false,
     regularPrice: 0,
     discountedPrice: 0,
-    images: {},
+    images: [],
   });
   const {name,
     vehicleType,
@@ -54,12 +57,22 @@ const CreateListings = () => {
     images,
   } = formData
 
+  const removeImg = (id) => {
+    setImgs( imgs.filter(img => img.id !== id) )
+    setFormData(prevState => {
+      const newImages = images.filter(img => {
+        return img.id !== id
+      })
+      return {...prevState, images: newImages}
+    })
+  }
+
+
   const onFormDataMutate = (e) => {
     let makeV = null
     if (e.target.id === 'make') {
       makeV = e.target.value.toUpperCase()
     }
-    console.log(e.target.value)
     let boolean = null;
       if (e.target.value === 'true') {
         boolean = true
@@ -67,9 +80,22 @@ const CreateListings = () => {
       if (e.target.value === 'false') {
         boolean = false
       }
+      if (e.target.files && e.target.files.length > 6) {
+        return toast.error('Too many images (max 6).')
+      }
       if (e.target.files) {
+        let imgsArray = [];
+        let imgsAr = [];
+        console.log( e.target.files.length)
+        for (let i = 0; i < e.target.files.length; i++) {
+          const uniqeId = Date.now() + Math.random()  + 'id' + Math.random()
+          imgsArray.push({url: URL.createObjectURL(e.target.files[i]), id: uniqeId})
+          imgsAr.push({url: e.target.files[i], id: uniqeId})
+        }
+        setImgs(prevState => [...prevState, ...imgsArray])
         setFormData(prevState => {
-          return {...prevState, images: e.target.files}
+          return {...prevState, images: [...images, ...imgsAr]}
+          // return {...prevState, images: e.target.files}
         })
       }
       if (!e.target.files) {
@@ -92,24 +118,26 @@ const CreateListings = () => {
       isMounted.current = false
     }
   }, [isMounted])
+
   const onSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    const {error, ok} = await createListing(formData)
+    const {ok} = await createListing(formData)
     if (ok) {
       setLoading(false)
       router.push('/account')
-    } 
+    } else {
+      setLoading(false)
+    }
   }
   if (loading) {
-    return <Loading />
+    return <div className="loadingContainer"><Loading /></div>
   }
   return (
     <div className={styles.createListingContainer}>
       <div className={styles.formBackground}>
       <div className="blueRow"></div>
         <h2 className={styles.formHeader}>Create a Listing</h2>
-       
         <form onSubmit={onSubmit} className={styles.form}>
         <label className={styles.label}>Name</label>
             <input
@@ -1031,6 +1059,16 @@ const CreateListings = () => {
                     required
                     />
                    <br /> 
+              <div className={styles.imgContainer}>
+                {imgs.map(img => {
+                  return <div key={img.id} className={styles.imgDiv}>
+                  <img    className={hover === img.id ? styles.imgHover : styles.img} alt="image" src={img.url} />
+                  {hover === img.id ? <div onMouseLeave={() => setHover(null)} className={styles.hoverDiv}>
+                    <p onClick={() => removeImg(img.id)} className={styles.hoverText}>Remove</p>
+                  </div> : <div onMouseOver={() => setHover(img.id)} className={styles.hoverDivOff}></div>}
+                  </div>
+                })}
+              </div>
               <button type="submit" className={styles.submitButton}>
                 <p className="createListingButton-p">Create Listing</p>
                 <img src="/svg/keyboardArrowRightIcon.svg" className="createListingSubmitArrow" alt="arrow" />

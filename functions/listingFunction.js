@@ -7,6 +7,8 @@ import {toast} from 'react-toastify';
 
 // Create a Listing ==>
 export const createListing = async (formData) => {
+  
+
   const auth = getAuth()
   let error = false
   let ok = false
@@ -26,19 +28,18 @@ export const createListing = async (formData) => {
         color,
         description,
         offer, 
-        images,
+        images
       } = formData
       const regularPrice = parseInt(formData.regularPrice);
       const discountedPrice = parseInt(formData.discountedPrice);
       const make = formData.make.toUpperCase()
-    
       if(discountedPrice > regularPrice) {
-        error = true
+        ok = false
         toast.error('Discounted Price needs to be less than Regular Price');
         return
       }
       if (images.length > 6) {
-        error = true
+        ok = false
         toast.error('Max 6 images');
         return
       }
@@ -87,12 +88,12 @@ export const createListing = async (formData) => {
       try {
       const imgUrls = await Promise.all(
         [...images].map(img => {
-          return storeImage(img)
+          return storeImage(img.url)
         })
       ).catch(err => {
         console.log(err)
         toast.error('Images Not Uploaded!');
-        error = true
+        ok = false
       });
       
       const formDataCopy = {...formData, imgUrls, timestamp: serverTimestamp()}
@@ -102,8 +103,8 @@ export const createListing = async (formData) => {
       formDataCopy.discountedPrice = discountedPrice;
       !formDataCopy.offer && delete formDataCopy.discountedPrice;
 
-      const docRef = await addDoc(collection(db, 'listings'), formDataCopy).catch(err => error = true)
-      const docRef2 = await addDoc(collection(db, 'transport'), formDataCopy).catch(err => error = true)
+      const docRef = await addDoc(collection(db, 'listings'), formDataCopy).catch(err => ok = false)
+      const docRef2 = await addDoc(collection(db, 'transport'), formDataCopy).catch(err => ok = false)
       const productRef = doc(db, 'numbers', 'products');
       const productsSnap = await getDoc(productRef, {userRef: formData.userRef});
       const productsCount = productsSnap.data()
@@ -116,10 +117,10 @@ export const createListing = async (formData) => {
       ok = true
       } catch(err) {
         console.log(err)
-        error = true
+        ok = false
       }
 
-  return {ok, error}
+  return {ok}
 }
 
 
@@ -127,7 +128,11 @@ export const createListing = async (formData) => {
 
 
 // UPDATE LISTING ==>
-export const updateListing = async (formData, slug, changeImgs) => {
+export const updateListing = async (formData, slug, changeImgs, imageUrls) => {
+  if (imageUrls.length <= 0) {
+    toast.error('No images selected')
+    return {ok: false}
+}
   const auth = getAuth()
   let error = false
   let ok = false
@@ -153,20 +158,24 @@ export const updateListing = async (formData, slug, changeImgs) => {
       const discountedPrice = parseInt(formData.discountedPrice);
       const make = formData.make.toUpperCase()
       if(discountedPrice > regularPrice) {
-        error = true
+        ok = false
         toast.error('Discounted Price needs to be less than Regular Price');
         return
       }if (changeImgs) {
         if (images.length > 6) {
-          error = true
+          ok = false
           toast.error('Max 6 images');
           return
         }
       }
       
       //store images
-      let imgUrls = []
-      let formDataCopy = {}
+      const iUrls = [];
+      let imgsUrls = [];
+      imageUrls.map(img => {
+        return imgsUrls.push(img.url)
+      })
+      let formDataCopy = {};
       if (changeImgs) {
         const storeImage = async (image) => {
           return new Promise((resolve,reject) => {
@@ -200,6 +209,7 @@ export const updateListing = async (formData, slug, changeImgs) => {
                 // Upload completed successfully, now we can get the download URL
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                   console.log(downloadURL)
+                  imgsUrls.push(downloadURL)
                   resolve(downloadURL);
                 });
               }
@@ -208,40 +218,65 @@ export const updateListing = async (formData, slug, changeImgs) => {
   
           })
         } // storeImage() end
-        imgUrls = await Promise.all(
-          [...images].map(img => {
-            return storeImage(img)
-          })
-        ).catch(err => {
+        
+        await Promise.all([...images].map(img => {
+          return storeImage(img.url)
+        })).then(async (value) => {
+          try {
+            const imgUrls = [...imgsUrls]
+            formDataCopy = {...formData, imgUrls, timestamp: serverTimestamp()}
+            
+            formDataCopy.regularPrice = regularPrice
+            formDataCopy.discountedPrice = discountedPrice
+            formDataCopy.make = make
+            delete formDataCopy.images;
+            !formDataCopy.offer && delete formDataCopy.discountedPrice;
+      
+            const docRef = doc(db, 'transport', slug);
+            await updateDoc(docRef, formDataCopy).catch(err => ok = false)
+      
+            toast.success('Listing saved!')
+            ok = true
+            } catch(err) {
+              console.log(err)
+              toast.error('Something went wrong. Could not update a listing');
+              ok = false
+            }
+
+          
+          
+        }).catch(err => {
           console.log(err)
           toast.error('Images Not Uploaded!');
-          error = true
+          ok = false
         });
-        formDataCopy = {imgUrls}
+        
+     
       } // if () end
-      
-      try {
-      
-      formDataCopy = {...formData, timestamp: serverTimestamp()}
-      formDataCopy.regularPrice = regularPrice
-      formDataCopy.discountedPrice = discountedPrice
-      formDataCopy.make = make
-      delete formDataCopy.images;
-      !formDataCopy.offer && delete formDataCopy.discountedPrice;
+      else {
+        try {
+          const imgUrls = [...imgsUrls]
+          formDataCopy = {...formData, imgUrls, timestamp: serverTimestamp()}
+          
+          formDataCopy.regularPrice = regularPrice
+          formDataCopy.discountedPrice = discountedPrice
+          formDataCopy.make = make
+          delete formDataCopy.images;
+          !formDataCopy.offer && delete formDataCopy.discountedPrice;
 
-      const docRef = doc(db, 'transport', slug);
-      await updateDoc(docRef, formDataCopy).catch(err => error = true)
+          const docRef = doc(db, 'transport', slug);
+          await updateDoc(docRef, formDataCopy).catch(err => error = true)
 
-      toast.success('Listing saved!')
-      ok = true
-      } catch(err) {
-        console.log(err)
-        error = true
+          toast.success('Listing saved!')
+          ok = true
+          } catch(err) {
+            console.log(err)
+            toast.error('Something went wrong. Could not update a listing');
+            ok = false
+          }
+
       }
-
-
-
-  return {ok, error}
+  return {ok}
 }
 
 

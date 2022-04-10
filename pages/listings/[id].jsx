@@ -126,7 +126,7 @@ const ListingPage = ({listing, owner}) => {
                         </tr>
                         <tr>
                             <td className={styles.tableIndex}>Power</td>
-                            <td className={styles.tableValue}>{data.data.power} Kw</td>
+                            <td className={styles.tableValue}>{data.data.power} kW</td>
                         </tr>
                         <tr>
                             <td className={styles.tableIndex}>Fuel</td>

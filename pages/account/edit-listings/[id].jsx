@@ -12,7 +12,9 @@ import Loading from '../../../components/comps/Loading';
 const EditListing = () => {
     const router = useRouter()
     const slug = router.query.id
-    const [listing, setListing] = useState(null)
+    const [imgs, setImgs] = useState([])
+    const [imageUrls, setImageUrls] = useState([])
+    const [hover, setHover] = useState(null)
     const [loading, setLoading] = useState(false);
     const [changeImgs, setChangeImgs] = useState(false);
     const isMounted = useRef(true);
@@ -36,7 +38,7 @@ const EditListing = () => {
         offer: false,
         regularPrice: '',
         discountedPrice: '',
-        images: {},
+        images: [],
       });
       const {name,
         vehicleType,
@@ -60,14 +62,18 @@ const EditListing = () => {
       } = formData
       formData.make = make.toLowerCase()
       if (formData.make) {
-      
         formData.make = formData.make[0].toUpperCase() + formData.make.slice(1)
       }
+
+      const removeImg = (id) => {
+        setImgs( imgs.filter(img => img.id !== id) )
+        setImageUrls(imageUrls.filter(img => img.id !== id))
+        setFormData(prevState => {
+          return {...prevState, images: images.filter(img => img.id !== id)}
+        })
+      }
+
       const onFormDataMutate = (e) => {
-        let makeV = null
-        if (e.target.id === 'make') {
-          makeV = e.target.value.toUpperCase()
-        }
         let boolean = null;
           if (e.target.value === 'true') {
             boolean = true
@@ -75,10 +81,21 @@ const EditListing = () => {
           if (e.target.value === 'false') {
             boolean = false
           }
+          if ( e.target.files && imgs.length + e.target.files.length > 6) {
+            return toast.error('Too many images (max 6).')
+          }
           if (e.target.files) {
+            let imgsArray = [];
+            let imgsAr = [];
+            for (let i = 0; i < e.target.files.length; i++) {
+              const uniqeId = Date.now() + Math.random()  + 'id' + Math.random()
+              imgsAr.push({url: e.target.files[i], id: uniqeId})
+              imgsArray.push({url: URL.createObjectURL(e.target.files[i]), id: uniqeId})
+            }
+            setImgs(prevState => [...prevState, ...imgsArray])
             setChangeImgs(true)
             setFormData(prevState => {
-              return {...prevState, images: e.target.files}
+              return {...prevState, images:[...images, ...imgsAr]}
             })
           }
           if (!e.target.files) {
@@ -93,11 +110,14 @@ const EditListing = () => {
         e.preventDefault()
         setLoading(true)
         formData.make = make.toUpperCase()
-        const {error, ok} = await updateListing(formData, slug, changeImgs)
+        console.log(images)
+        const {ok} = await updateListing(formData, slug, changeImgs, imageUrls)
         if (ok) {
           setLoading(false)
           router.push('/account')
-        } 
+        } else {
+          setLoading(false)
+        }
       }
 
       useEffect(() => {
@@ -113,22 +133,33 @@ const EditListing = () => {
         }
       }, [isMounted])
       
-      useEffect(() => {
-        if(listing && listing.userRef !== auth.currentUser.uid) {
-            toast.error('You can not edit that listing');
-            router.push('/')
-        }
-      }, [router, auth.currentUser.uid, listing])
+      // useEffect(() => {
+      //   if(auth.currentUser.uid && formData.userRef !== auth.currentUser.uid) {
+      //       toast.error('You can not edit that listing');
+      //       router.push('/')
+      //   }
+      // }, [router, auth.currentUser.uid])
 
     // Fills formData to edit
     useEffect(() => {
+      const auth = getAuth()
+      
+      
         setLoading(true);
         const fetchListing = async () => {
             const docRef = doc(db, 'transport',  slug);
             const docSnap = await getDoc(docRef)
             if(docSnap.exists()) {
-              setListing(docSnap.data());
-              setFormData({...docSnap.data()})
+              setFormData({...docSnap.data(), images: []})
+              const imgsArray = []
+              docSnap.data().imgUrls.map(img => {
+                const uniqeId = Date.now() + Math.random()  + 'id' + Math.random()
+                imgsArray.push({url: img, id: uniqeId})
+                
+                return
+              })
+              setImageUrls(imgsArray)
+              setImgs(imgsArray)
               setLoading(false)
             } else {
               router.push('/')
@@ -137,6 +168,13 @@ const EditListing = () => {
           }
           fetchListing();
     },[slug])
+    useEffect(() => {
+      if(auth.currentUser.uid && formData.userRef && formData.userRef !== auth.currentUser.uid) {
+        console.log(auth.currentUser.uid, formData.userRef)
+        toast.error('You can not edit that listing');
+        router.push('/')
+    }
+    }, [router, auth.currentUser.uid, formData.userRef])
   
   if (loading) {
     return <div className="loadingContainer"><Loading /></div>
@@ -1054,7 +1092,17 @@ const EditListing = () => {
                     accept=".jpg,.png,.jpeg"
                     multiple
                     />
-                   <br /> 
+                   <br />
+              <div className={styles.imgContainer}>
+                {imgs.map(img => {
+                  return <div key={img.id} className={styles.imgDiv}>
+                    <img    className={hover === img.id ? styles.imgHover : styles.img} alt="image" src={img.url} />
+                    {hover === img.id ? <div onMouseLeave={() => setHover(null)} className={styles.hoverDiv}>
+                      <p onClick={() => removeImg(img.id)} className={styles.hoverText}>Remove</p>
+                    </div> : <div onMouseOver={() => setHover(img.id)} className={styles.hoverDivOff}></div>}
+                    </div>
+                })}
+              </div>
               <button type="submit" className={styles.submitButton}>
                 <p className="createListingButton-p">Update Listing</p>
                 <img src="/svg/keyboardArrowRightIcon.svg" className="createListingSubmitArrow" alt="arrow" />

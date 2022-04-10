@@ -24,7 +24,7 @@ export default function Home() {
           <h3 className={styles.popularMake}>Land Rover</h3>
           <h3 className={styles.popularMake}>Mazda</h3>
           <h3 className={styles.popularMake}>Mercedes-Benz</h3>
-          <h3 className={styles.popularMake}>Wolkswagen</h3>
+          <h3 className={styles.popularMake}>Volkswagen</h3>
           <h3 className={styles.popularMake}>Volvo</h3>
         </div>
 

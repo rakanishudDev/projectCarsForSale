@@ -14,7 +14,7 @@ function Oauth() {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider)
       const user = result.user
-
+      console.log(user)
       //check for user
       const docRef = doc(db, 'users', user.uid);
       const docSnap = await getDoc(docRef);
@@ -23,6 +23,8 @@ function Oauth() {
         await setDoc(doc(db, 'users', user.uid), {
           name: user.displayName,
           email: user.email,
+          favorites: [],
+          uid: user.auth.currentUser.uid,
           timestamp: serverTimestamp()
         })
       }
