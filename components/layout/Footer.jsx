@@ -7,14 +7,17 @@ const Footer = () => {
   const auth = getAuth()
   const [userOnline, setUserOnline] = useState(null)
   const isMounted = useRef(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (isMounted) {
       onAuthStateChanged(auth, user => {
         if (user) {
           setUserOnline(true)
+          setLoading(false)
         } else {
           setUserOnline(false)
+          setLoading(false)
         }
       })
       return () => {
@@ -28,13 +31,13 @@ const Footer = () => {
     <footer className={styles.footer}>
        
         <div>
-        <ul className={styles.ul}>
+        { !loading && <ul className={styles.ul}>
                   <li><Link href="/"><a>Home</a></Link></li>
                   <li><Link href="/browse"><a>Browse</a></Link></li>
 
                   {userOnline ? <li><Link href="/account"><a>Account</a></Link></li> :
                   <li><Link href="/auth/sign-in"><a>Sign in</a></Link></li>}
-              </ul>
+              </ul>}
         </div>
         <br />
         <img className={styles.icon} src="/svg/cars.svg"/>

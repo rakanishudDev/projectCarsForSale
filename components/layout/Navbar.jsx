@@ -8,14 +8,17 @@ const Navbar = () => {
   const auth = getAuth()
   const [userOnline, setUserOnline] = useState(null)
   const isMounted = useRef(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (isMounted) {
       onAuthStateChanged(auth, user => {
         if (user) {
           setUserOnline(true)
+          setLoading(false)
         } else {
           setUserOnline(false)
+          setLoading(false)
         }
       })
       return () => {
@@ -32,27 +35,30 @@ const Navbar = () => {
     <>
     <div className={styles.navContainer}>
       <Link href="/">
-      <header className={styles.headerContainer} >
+      <header className={styles.logoContainer} >
         <img className={styles.icon} src="/svg/cars.svg"/>
         <h2 className={styles.header}>Yacars</h2>
       </header>
       </Link>
       
       <div className={styles.Navbar}>
-        
+        { loading ? '' :<>
         <Link href="/account/create-listings">
         <a className="sellButton-a"><button type="button" className="sellButton">Create a Listing</button></a>
         </Link>
 
           <nav>
               <ul className={styles.ul}>
+                
                   <li><Link href="/"><a>Home</a></Link></li>
                   <li><Link href="/browse"><a>Browse</a></Link></li>
 
                   {userOnline ? <li><Link href="/account"><a>Account</a></Link></li> :
                   <li><Link href="/auth/sign-in"><a>Sign in</a></Link></li>}
+                
               </ul>
           </nav>
+          </>}
       </div>
       
     </div>

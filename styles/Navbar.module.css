@@ -3,6 +3,7 @@
     margin: 0 1rem;
     display: flex;
     justify-content: space-between;
+    height: 53px;
 }
 .Navbar {
     width: 374px;
@@ -34,11 +35,12 @@
 .ul li:hover {
     transform: scale(1.1);
 }
-.headerContainer {
+.logoContainer {
     display: flex;
     align-items: center;
     gap: 0.3rem;
     cursor: pointer;
+    
 }
 .header {
     border-right: solid 3px black;
