@@ -30,7 +30,7 @@ const CreatePost = () => {
     <table cellPadding="8" cellSpacing="0" className={styles.table}>
                 <tbody className={styles.tbody}>
                     <tr>
-                        <th colspan="8" className={styles.th}>Create a Post</th>
+                        <th colSpan="8" className={styles.th}>Create a Post</th>
                         
                     </tr>
                     <tr>
