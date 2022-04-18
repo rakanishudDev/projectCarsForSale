@@ -64,7 +64,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    width: 1200px;
+    width: 100%;
     margin-bottom: 2rem;
 }
 .listingsToggleOn {
@@ -96,10 +96,11 @@
     transition: box-shadow 0.2s;
 }
 .listingsToggleOffDiv {
-    border-top: solid 1px #6e849c;
+    max-height: 41px;
+    border-top: solid 3px #6e849c;
 }
 .toggleCont {
-    border-top: solid 1px #6e849c;
+    border-top: solid 3px #6e849c;
     height: 41px;
     width: 100%;
 }

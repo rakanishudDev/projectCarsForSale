@@ -37,6 +37,8 @@ const Footer = () => {
 
                   {userOnline ? <li><Link href="/account"><a>Account</a></Link></li> :
                   <li><Link href="/auth/sign-in"><a>Sign in</a></Link></li>}
+                  <li><Link href="/forum"><a>Forum</a></Link></li>
+                  <li><Link href="/about"><a>About Us</a></Link></li>
               </ul>}
         </div>
         <br />

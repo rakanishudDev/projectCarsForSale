@@ -1,23 +1,23 @@
 .footer {
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 2rem 0;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 2rem 0 0 0;
 
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .footer a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-  }
-  .icon {
-    justify-self: flex-start;
-    width: 70px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.icon {
+  justify-self: flex-start;
+  width: 70px;
 }
 .ul {
   font-size: 1rem;

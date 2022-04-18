@@ -20,8 +20,7 @@ const {
     const startingPrice = parseInt(startPrice || 0)
     const endingPrice = parseInt(endPrice || 1000000)
 
-    console.log(startingPrice + ' yayy')
-    console.log(endingPrice + ' yayy')
+
     const listings = []
     try {
     const listingRef = collection(db, 'transport')

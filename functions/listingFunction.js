@@ -5,6 +5,175 @@ import {v4 as uuidv4} from 'uuid';
 import { db } from '../firebase.config';
 import {toast} from 'react-toastify';
 
+
+export const correctDateTimeFormat = (dt, t) => {
+
+  let dateTime = dt.toDate()
+  dateTime = dateTime.toLocaleDateString() + ' ' + dateTime.toTimeString()
+  const [date, time] = dateTime.split(' ')
+  const [hours, minutes] = time.split(':')
+  console.log(dateTime)
+  if (t) {
+    return date + ' ' + hours + ':' + minutes
+  } else {
+    return date
+  }
+  
+}
+
+export const makePath = (slug, id) => {
+  let a = slug;
+  let b = id
+  switch(slug) {
+      case 'tehnika':
+           a = 'Tehnika'
+           switch(id) {
+              case 'remont-hooldus':
+                   b = 'Remont ja hooldus'
+                   break;
+              case 'tehnoülevaatus':
+                   b = 'Tehnoülevaatus'
+                   break;
+              case 'varuosad':
+                   b = 'Varuosad'
+                   break;
+              default:
+                  break;
+           }
+          break;
+      case 'tuunimine':
+           a = 'Sõidukite modifitseerimine ja tuunimine'
+           switch(id) {
+              case 'audio':
+                   b = 'Audio'
+                   break;
+              case 'auto-välimuse-muutmine':
+                   b = 'Auto välimuse muutmine'
+                   break;
+              case 'mootori-tuunimine':
+                   b = 'Mootori tuunimine'
+                   break;
+              case 'veljed-rehvid':
+                   b = 'Veljed ja rehvid'
+                   break;
+              case 'muu':
+                   b = 'Muud vidinad'
+                   break;
+              default:
+                  break;
+           }
+          break;
+      case 'mototehnika':
+           a = 'Mototehnika'
+           switch(id) {
+              case 'ATV':
+                   b = "ATV'd"
+                   break;
+              case 'bike':
+                   b = "Bike'd"
+                   break;
+              case 'chopperid':
+                   b = 'Chopperid'
+                   break;
+              case 'mootorrattad':
+                   b = 'Mootorrattad'
+                   break;
+              case 'mootorsaanid':
+                   b = 'Mootorsaanid'
+                   break;
+              case 'rollerid':
+                   b = 'Rollerid'
+                   break;
+              default:
+                  break;
+           }
+          break;
+      case 'teised-sõidukid':
+           a = 'Teised sõidukid'
+           switch(id) {
+              case 'bussid-kaubikud':
+                   b = 'Bussid, väikebussid ja kaubikud'
+                   break;
+              case 'haagissuvilad':
+                   b = 'Haagissuvilad'
+                   break;
+              case 'maasturid':
+                   b = 'Maasturid'
+                   break;
+              case 'veesõidukid':
+                   b = 'Veesõidukid'
+                   break;
+              case 'veoautod-rasketehnika':
+                   b = 'Veoautod ja rasketehnika'
+                   break;
+              default:
+                  break;
+           }
+          break;
+      case 'muud-foorumid':
+           a = 'Muud foorumid'
+           switch(id) {
+              case 'autondus':
+                   b = 'Autondus'
+                   break;
+              case 'kindlustus':
+                   b = 'Kindlustus'
+                   break;
+              case 'liiklus':
+                   b = 'Liiklus'
+                   break;
+              case 'õppesõit-autokoolid':
+                   b = 'Õppesõit ja autokoolid'
+                   break;
+              case 'ostuabi':
+                   b = 'Ostuabi'
+                   break;
+              case 'finantseerimine':
+                   b = 'Sõiduki ostu finantseerimine'
+                   break;
+              case 'vaba-teema':
+                   b = 'Vaba teema'
+                   break;
+              case 'võistlustanner':
+                   b = 'Võistlustanner ehk autode võrdlus'
+                   break;
+              case 'üritused':
+                   b = 'Üritused'
+                   break;
+              
+              default:
+                  break;
+           }
+          break;
+      case 'auto-sport':
+           a = 'Auto sport'
+           switch(id) {
+              case 'eesti-autosport':
+                   b = 'Eesti autosport'
+                   break;
+              case 'vormel1':
+                   b = 'Vormel 1'
+                   break;
+              case 'WRC':
+                   b = 'WRC'
+                   break;
+              default:
+                  break;
+           }
+          break;
+
+      default:
+          break;
+  }
+
+
+  return a + ' » ' + b
+
+}
+
+
+
+
 // Create a Listing ==>
 export const createListing = async (formData) => {
   
@@ -315,4 +484,6 @@ export const saveListing = async (docId) => {
   }
 
 }
+
+
 

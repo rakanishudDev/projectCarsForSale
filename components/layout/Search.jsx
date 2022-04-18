@@ -6,8 +6,11 @@ const Search = () => {
   }
   return (
     <div className="search-div">
-        <input className="search-input" type="search" />
-        <button className="searchButton" type="button">Search</button>
+        
+        <div className="search-input-div">
+          <input className="search-input" type="search" />
+          <img className="search-SVG" width="20px" src="/svg/search3.svg" alt="search" />
+        </div>
         
     </div>
   )

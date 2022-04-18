@@ -37,7 +37,7 @@ const Navbar = () => {
       <Link href="/">
       <header className={styles.logoContainer} >
         <img className={styles.icon} src="/svg/cars.svg"/>
-        <h2 className={styles.header}>Yacars</h2>
+        <h2 className={styles.header}>Yawacars</h2>
       </header>
       </Link>
       

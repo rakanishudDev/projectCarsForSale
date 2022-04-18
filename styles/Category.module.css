@@ -4,6 +4,7 @@
     
 }
 .selectContainer {
+    width: 350px;
     padding: 1rem 2rem 2rem 2rem;
     background-color: rgb(0, 0 ,0 , 0.05);
     

@@ -11,7 +11,8 @@ export default function Home() {
       <main className={styles.main}>
         
         
-        <h3 className={styles.header}>POPULAR MAKES</h3>
+        {/* <h3 className={styles.header}>POPULAR MAKES</h3> */}
+        <h3 className={styles.header}>EXPLORE, FIND YOUR DREAM CAR</h3>
         <div className={styles.popularMakes}>
           <h3 className={styles.popularMake}>Audi</h3>
           <h3 className={styles.popularMake}>BMW</h3>

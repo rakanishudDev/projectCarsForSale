@@ -25,16 +25,30 @@ a {
 .mainContainer {
   margin: 0 2rem;
 }
-.search-div {
-
+.search-input-div {
+  padding-right: 5px;
   display: flex;
   justify-content: center;
-  margin: 2rem 0;
+  align-items: center;
+  background-color: white;
+}
+.search-div {
+
+  padding: 5px 0;
+  background-color: #6e849c;
+  display: flex;
+  justify-content: center;
+
 }
 .search-input {
-  width: 350px;
+  outline-style: none;
+  border: none;
+  width: 500px;
   font-size: 1rem;
   padding: 5px;
+}
+.search-SVG {
+  cursor: pointer;
 }
 .sellButton,
 .searchButton {
@@ -104,7 +118,7 @@ a {
   align-items: center;
   gap: 1.5rem;
   margin: 0;
-  width: 1200px;
+  width: 100%;
 
  
 }
@@ -114,9 +128,8 @@ a {
 }
 /* Browse */
 .browse {
-  margin: 0 2rem;
+  margin: 0 3rem;
   display: flex;
-  justify-content: center;
   gap: 2rem;
 }
 .blueColumn {

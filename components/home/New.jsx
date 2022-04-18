@@ -101,8 +101,8 @@ const New = () => {
  return (
     <div >
             <h3 className={styles.categoryHeader}>NEW</h3>
-            
-            <div style={{margin: "0 50px"}} className={styles.newGrid}>
+            <div style={{display: "flex", flexDirection: "center"}}>
+            <div style={{margin: "0 59px"}} className={styles.newGrid}>
                 {listings && listings.map((doc) => {
 
                     return <div onMouseOver={() => setHover(doc.id)} onMouseOut={() => setHover(false)} onClick={() => onClick(doc.id)} key={doc.id} className={styles.listingContainer}>
@@ -119,6 +119,7 @@ const New = () => {
                             </div>
                         </div>
                     })}
+            </div>
             </div>
       </div>
   )

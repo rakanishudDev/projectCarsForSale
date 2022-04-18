@@ -50,13 +50,15 @@ const Browse = ({cars}) => {
 
   return (<>
     <br />
-    <Search />
+   
     
     
 
     <br />
+    <Search />
     {/* <div className={styles.browseBar}></div> */}
     <div className="browse">
+    
         <div className={styles.browseInner}>
         <Category changeSearchPath={changeSearchPath} onSearch={onSearch} />
 
