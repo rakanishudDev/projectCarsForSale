@@ -57,8 +57,8 @@ const CreatePost = () => {
                                     <option value="muu">Muud vidinad</option>
                                 </optgroup>
                                 <optgroup label="Mototehnika">
-                                    <option value="ATV">ATV'd</option>
-                                    <option value="bike">Bike'id</option>
+                                    <option value="ATV">ATV&lsquo;d</option>
+                                    <option value="bike">Bike&lsquo;id</option>
                                     <option value="chopperid">Chopperid</option>
                                     <option value="mootorrattad">Mootorrattad</option>
                                     <option value="mootorsaanid">Mootorsaanid</option>
