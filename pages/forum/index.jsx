@@ -136,7 +136,7 @@ const Forum = () => {
                         <tr className={styles.tableRow}>
                             <td className={styles.forumName}>
                                 <Link href="/forum/mototehnika/ATV">
-                                    <a><div  className={styles.link}>ATV'd</div></a>
+                                    <a><div  className={styles.link}>ATV&lsquo;d</div></a>
                                 </Link></td>
                                 <td className={styles.thDetails}>{forumsData['ATV'].topics}</td>
                                 <td className={styles.thDetails}>{forumsData['ATV'].lastPosted}</td>
@@ -144,7 +144,7 @@ const Forum = () => {
                         <tr className={styles.tableRow}>
                             <td className={styles.forumName}>
                                 <Link href="/forum/mototehnika/bike">
-                                    <a><div  className={styles.link}>Bike'id</div></a>
+                                    <a><div  className={styles.link}>Bike&lsquo;id</div></a>
                                 </Link></td>
                                 <td className={styles.thDetails}>{forumsData['bike'].topics}</td>
                                 <td className={styles.thDetails}>{forumsData['bike'].lastPosted}</td>
