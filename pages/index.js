@@ -2,7 +2,12 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import New from '../components/home/New'
 import SpecialOffer from '../components/home/SpecialOffer'
+
+
+
+
 export default function Home() {
+
   return (
     <div className={styles.container}>
       <br />

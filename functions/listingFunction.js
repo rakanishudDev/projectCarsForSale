@@ -12,7 +12,6 @@ export const correctDateTimeFormat = (dt, t) => {
   dateTime = dateTime.toLocaleDateString() + ' ' + dateTime.toTimeString()
   const [date, time] = dateTime.split(' ')
   const [hours, minutes] = time.split(':')
-  console.log(dateTime)
   if (t) {
     return date + ' ' + hours + ':' + minutes
   } else {
@@ -167,7 +166,7 @@ export const makePath = (slug, id) => {
   }
 
 
-  return a + ' » ' + b
+  return {a,  b}
 
 }
 

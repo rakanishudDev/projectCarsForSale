@@ -77,7 +77,7 @@ const Topic = () => {
                     </tr>
                     <tr>
                         <td className={styles.topicsCategory} colSpan="3">
-                         {path + ' » ' + topic.data.title}
+                         <Link href="/forum"><a className={styles.pathLink}>{path.a}</a></Link> » <Link href={`/forum/${slug}/${id}`}><a className={styles.pathLink}>{path.b}</a></Link> » <span>{topic.data.title}</span>
                         </td>
                        
                     </tr>
@@ -115,20 +115,28 @@ const Topic = () => {
                     </tr>
                     {replies.map(reply => {
                         return <>
+                        <tr>
+                          <td className={styles.commentTopLineLeft}></td>
+                          <td className={styles.commentTopLine} colSpan="2">
+                          
+                          </td>
+                        </tr>
                         <tr key={reply.id} className={styles.tableRowTopicComment}>
                           <td valign="top" className={styles.commentAuthor}>
                             <div className={styles.authorDiv}>{reply.data.replyAuthor}</div>
                           </td>
                           <td className={styles.topicCommentContent} colSpan="2">
                               <div  className={styles.comment}>{reply.data.reply}</div>
-                              <div className={styles.commentDate}><i>{reply.data.date}</i></div>
+                              
                           </td>
                         </tr>
                         <tr>
-                          <td className={styles.commentBottomLine} colSpan="3">
-
+                          <td className={styles.commentBottomLineLeft}></td>
+                          <td className={styles.commentBottomLine} colSpan="2">
+                          <i>{reply.data.date}</i>
                           </td>
                         </tr>
+                        
                         </>
                       })}
                      

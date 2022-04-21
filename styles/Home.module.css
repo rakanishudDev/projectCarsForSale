@@ -36,7 +36,7 @@
   cursor: pointer;
   overflow: hidden;
   border: solid rgb(0, 0, 0) 1px;
-  border-radius: 1rem;
+  border-radius: 0.2rem;
   background-color: white;
   max-width: 210px;
   

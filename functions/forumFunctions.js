@@ -1,4 +1,4 @@
-import {collection, docs, doc, getDoc, getDocs, serverTimestamp, addDoc, setDoc, updateDoc, updateDocs, query} from 'firebase/firestore'
+import {collection, docs, doc, getDoc, getDocs, serverTimestamp, addDoc, setDoc, updateDoc, updateDocs, query, startAt, where, orderBy, startAfter, limit} from 'firebase/firestore'
 import { db } from '../firebase.config';
 import {getAuth} from 'firebase/auth';
 import {toast} from 'react-toastify'
@@ -30,8 +30,13 @@ export const getForumsData = async () => {
 export const getForumData = async (id) => {
     const forumRef = collection(db, 'forums', id, 'forum')
     let forumData = []
+    let lastVisible = null
+    let firstVisible = null
     try {
-        const forumSnap = await getDocs(forumRef)
+        const q = query(forumRef, orderBy('date', 'desc'), limit(15))
+        const forumSnap = await getDocs(q)
+        lastVisible = forumSnap.docs[forumSnap.docs.length - 1]
+        firstVisible = forumSnap.docs[0]
         forumSnap.forEach(doc => {
             forumData.push({id: doc.id, data: doc.data()})
             return
@@ -39,11 +44,51 @@ export const getForumData = async (id) => {
     } catch(err) {
         console.log(err)
     }
-    console.log(forumData)
-    return forumData
+    return {forumData, lastVisible, firstVisible}
 }
-export const getForumTopics = async (id) => {
-    
+
+//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//
+
+export const getNextForumData = async (id, lastFetchedListing) => {
+    const forumRef = collection(db, 'forums', id, 'forum')
+    let forumData = []
+    let lastVisible = null
+    let firstVisible = null
+    try {
+        const q = query(forumRef, orderBy('date', 'desc'), startAfter(lastFetchedListing), limit(15))
+        const forumSnap = await getDocs(q)
+        lastVisible = forumSnap.docs[forumSnap.docs.length - 1]
+        firstVisible = forumSnap.docs[0]
+        forumSnap.forEach(doc => {
+            forumData.push({id: doc.id, data: doc.data()})
+            return
+        })
+    } catch(err) {
+        console.log(err)
+    }
+    return {forumData, lastVisible, firstVisible}
+}
+
+//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//
+
+export const getPreviousForumData = async (id, lastFetchedListing) => {
+    const forumRef = collection(db, 'forums', id, 'forum')
+    let forumData = []
+    let lastVisible = null
+    let firstVisible = null
+    try {
+        const q = query(forumRef, orderBy('date', 'desc'), startAt(lastFetchedListing), limit(15))
+        const forumSnap = await getDocs(q)
+        lastVisible = forumSnap.docs[forumSnap.docs.length - 1]
+        firstVisible = forumSnap.docs[0]
+        forumSnap.forEach(doc => {
+            forumData.push({id: doc.id, data: doc.data()})
+            return
+        })
+    } catch(err) {
+        console.log(err)
+    }
+    return {forumData, lastVisible, firstVisible}
 }
 
 //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//
@@ -55,12 +100,11 @@ export const getForumTopic = async (tid, id) => {
     let repliesData = []
     try {
         const topicSnap = await getDoc(topicRef)
-        console.log(topicSnap)
         if (topicSnap.exists()) {
-            console.log(topicSnap)
             topicData.push({id: topicSnap.id, data: topicSnap.data()})
         }
-        const repliesSnap = await getDocs(repliesRef)
+        const q = query(repliesRef, orderBy('date', 'desc'))
+        const repliesSnap = await getDocs(q)
         repliesSnap.forEach(doc => {
             repliesData.push({id: doc.id, data: doc.data()})
             return
@@ -99,7 +143,7 @@ export const createPost = async (formData) => {
 
             })
         })
-        toast.success('Your post is now up')
+        toast.info('Your post is now up')
         return {ok : true}
     } catch (err) {
         console.log(err)
@@ -126,7 +170,7 @@ export const commentPost = async (comment, tid, id) => {
 
         })
     })
-    toast.success('Your reply is now up')
+    toast.info('Your reply is now up')
     return {ok: true, id: replyId, reply: {
         date: Date.now(),
         reply: comment,
