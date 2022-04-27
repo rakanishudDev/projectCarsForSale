@@ -12,6 +12,7 @@ const Topic = () => {
   const [topic, setTopic] = useState(null)
   const [replies, setReplies] = useState([])
   const [loading, setLoading] = useState(true)
+  const [isOwner, setIsOwner] = useState(false)
   const [comment, setComment] = useState('')
   const router = useRouter()
   const {slug, tid, id } = router.query
@@ -33,16 +34,20 @@ const Topic = () => {
   const onDataMudate = (e) => {
     setComment(e.target.value)
   }
+  
   useEffect(() => {
     setLoading(true)
     const gettingTopicData = async () => {
       
-      const {topicData, repliesData} = await getForumTopic(tid, id)
+      const {topicData, repliesData, isOwner} = await getForumTopic(tid, id)
       console.log(topicData, repliesData)
       topicData[0].data.date = correctDateTimeFormat(topicData[0].data.date, true)
       repliesData.map(reply => {
         reply.data.date = correctDateTimeFormat(reply.data.date, true)
       })
+      if(isOwner) {
+        setIsOwner(true)
+      }
       setTopic(topicData[0])
       setReplies(repliesData)
       setLoading(false)
@@ -91,7 +96,10 @@ const Topic = () => {
                                 <div  className={styles.topic}>{topic.data.post}</div>
                                 <div><i>{topic.data.date}</i></div>
                           </td>
-                          <td className={styles.thDatetime}>{topic.data.date}</td>
+                          <td className={styles.thDatetime}>{isOwner ? 
+                            <Link href={`/forum/${slug}/${id}/${tid}/edit`}>
+                              <button className={styles.onEdit}>Edit</button>
+                            </Link> : ''}</td>
                           </>}
                       </tr>
                     
@@ -114,14 +122,14 @@ const Topic = () => {
 
                     </tr>
                     {replies.map(reply => {
-                        return <>
-                        <tr>
+                        return < >
+                        <tr key={reply.id + 1}>
                           <td className={styles.commentTopLineLeft}></td>
                           <td className={styles.commentTopLine} colSpan="2">
                           
                           </td>
                         </tr>
-                        <tr key={reply.id} className={styles.tableRowTopicComment}>
+                        <tr key={reply.id + 2} className={styles.tableRowTopicComment}>
                           <td valign="top" className={styles.commentAuthor}>
                             <div className={styles.authorDiv}>{reply.data.replyAuthor}</div>
                           </td>
@@ -130,7 +138,7 @@ const Topic = () => {
                               
                           </td>
                         </tr>
-                        <tr>
+                        <tr key={reply.id + 3}>
                           <td className={styles.commentBottomLineLeft}></td>
                           <td className={styles.commentBottomLine} colSpan="2">
                           <i>{reply.data.date}</i>

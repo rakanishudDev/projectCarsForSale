@@ -91,9 +91,10 @@ export const getPreviousForumData = async (id, lastFetchedListing) => {
     return {forumData, lastVisible, firstVisible}
 }
 
-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//
+//_\\//_\\/_\/_\/_\/_\/_\/_\/_\/=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//
 
 export const getForumTopic = async (tid, id) => {
+    const auth = getAuth()
     const topicRef = doc(db, 'forums', id, 'forum', tid)
     const repliesRef = collection(db, 'forums', id, 'forum', tid, 'replies')
     let topicData = []
@@ -115,9 +116,12 @@ export const getForumTopic = async (tid, id) => {
     } catch (err) {
         console.log(err)
     }
-    return {topicData, repliesData}
+    let isOwner = false
+    if (topicData[0].data.userRef === auth.currentUser.uid) {
+        isOwner = true
+    }
+    return {topicData, repliesData, isOwner}
 }
-
 
 //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//
 
@@ -129,6 +133,7 @@ export const createPost = async (formData) => {
     try {
         const formDataCopy = {
             authorName: auth.currentUser.displayName,
+            userRef: auth.currentUser.uid,
             date: serverTimestamp(),
             lastPosted: serverTimestamp(),
             post: formData.content,
@@ -152,7 +157,7 @@ export const createPost = async (formData) => {
     }
 }
 
-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//
+//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-// comment post
 
 export const commentPost = async (comment, tid, id) => {
     const auth = getAuth()
@@ -171,7 +176,7 @@ export const commentPost = async (comment, tid, id) => {
         })
     })
     toast.info('Your reply is now up')
-    return {ok: true, id: replyId, reply: {
+    return {ok: true, replyId: replyId, reply: {
         date: Date.now(),
         reply: comment,
         replyAuthor: auth.currentUser.displayName
@@ -183,3 +188,25 @@ export const commentPost = async (comment, tid, id) => {
     }
 }
 
+//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=// edit post
+
+export const editTopic = async (formData, id, tid, currentTopic) => {
+    let ok = false
+   try {
+        ok = true
+        const docRef = doc(db, 'forums', id, 'forum' , tid)
+        currentTopic.title = formData.title
+        currentTopic.category = formData.category
+        currentTopic.post = formData.content
+        console.log(currentTopic)
+        await updateDoc(docRef, currentTopic).catch(err =>{
+            ok = false
+            console.log(err)
+        })
+        
+    } catch (err) {
+        console.log(err)
+        ok = false
+    }
+    return ok
+}
