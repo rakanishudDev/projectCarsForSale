@@ -117,7 +117,7 @@ export const getForumTopic = async (tid, id) => {
         console.log(err)
     }
     let isOwner = false
-    if (topicData[0].data.userRef === auth.currentUser.uid) {
+    if (topicData[0].data.userRef === auth.currentUser?.uid) {
         isOwner = true
     }
     return {topicData, repliesData, isOwner}
@@ -202,11 +202,14 @@ export const editTopic = async (formData, id, tid, currentTopic) => {
         await updateDoc(docRef, currentTopic).catch(err =>{
             ok = false
             console.log(err)
+            toast.error('Could not edit current post')
         })
-        
+        toast.info('Post is updated')
     } catch (err) {
+        toast.error('Could not edit current post')
         console.log(err)
         ok = false
     }
+    console.log(ok)
     return ok
 }

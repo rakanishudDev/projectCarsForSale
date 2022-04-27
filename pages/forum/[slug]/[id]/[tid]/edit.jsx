@@ -22,9 +22,10 @@ const Edit = () => {
     } 
     const onSubmit = async (e) => {
         e.preventDefault()
-        const {ok} = await editTopic(formData, id, tid, currentTopic)
+        const ok = await editTopic(formData, id, tid, currentTopic)
         if (ok) {
-            router.push('/forum')
+            console.log(ok)
+            router.push(`/forum/${slug}/${id}/${tid}`)
         }
     }
     useEffect(() => {
