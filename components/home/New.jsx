@@ -37,7 +37,7 @@ const New = () => {
 
  if (listings) return (
     <div >
-            <h3 className={styles.categoryHeader}>NEW</h3>
+            <h3 className={styles.categoryHeader}>NEW LISTINGS</h3>
             <div style={{display: "flex", flexDirection: "center"}}>
             <div style={{margin: "0 59px"}} className={styles.newGrid}>
                 {listings && listings.map((doc) => {

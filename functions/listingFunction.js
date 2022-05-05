@@ -69,7 +69,7 @@ export const makePath = (slug, id) => {
                    b = "ATV'd"
                    break;
               case 'bike':
-                   b = "Bike'd"
+                   b = "Bike'id"
                    break;
               case 'chopperid':
                    b = 'Chopperid'

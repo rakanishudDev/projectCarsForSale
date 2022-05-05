@@ -61,14 +61,17 @@
   max-width: 210px;
   max-height: 150px;
   border-bottom: solid rgb(0, 0, 0) 1px;
-  transition: 0.5s;
+  transition: 0.9s;
   
 }
 
 .categoryHeader {
+  width: fit-content;
+  
   font-weight: 500;
   margin: 18px 0;
-  padding: 0.1rem 1rem;
+  padding: 0.1rem 1.5rem;
+  border-bottom: solid 2px #6e849c;
   
   
 }
@@ -194,4 +197,64 @@
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   gap: 1rem;
+}
+
+.carsForSaleCount {
+  font-weight: 400;
+
+}
+.carsForSaleCountNumber {
+  padding: 0 5px;
+  border: solid 1px black;
+}
+
+/* home FORUM TOPICS */
+.forumTopics {
+
+  width: 1232px;
+}
+.topicsRow {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.topicCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  background-color: white;
+  padding: 1rem;
+  border: solid black 1px;
+  border-radius: 0.2rem;
+}
+.topicCardTitle {
+  margin-bottom: 0;
+}
+.postContainer {
+
+  overflow: hidden;
+  max-height: 105px;
+}
+.topicAuthor {
+
+  text-align: right;
+}
+.topicPost {
+  margin: 0;
+  margin-top: 1rem;
+}
+.topicContent {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bottomInfo {
+  display: flex;
+  justify-content: flex-end;
+}
+.viewMore {
+  cursor: pointer;
+  color:rgb(37, 119, 213); 
 }

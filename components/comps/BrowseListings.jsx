@@ -9,7 +9,7 @@ const BrowseListings = ({carsListings, loading}) => {
   }
   return (
      <div className="listingItemsContainer">
-      <div className={styles.sort}><p>&darr; POPULARIY </p> | <p> &darr; PRICE </p>|<p> &darr; NAME </p>|<p> &darr; DATE</p></div>
+      <div className={styles.sort}><p>&darr; POPULARIY </p> | <p>PRICE </p>|<p> NAME </p>|<p>DATE</p></div>
        {carsListings.map(car => (
          <ListingItem key={car.id} id={car.id} data={car.data} />
        ))}

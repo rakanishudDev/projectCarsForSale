@@ -24,13 +24,17 @@ const ForumCategory = () => {
     const fetchPrevious = async () => {
 
             const data = await getPreviousForumData(id, previousPage[page-1])
-            setLastDoc(data.lastVisible)
+            
 
             data.forumData.map(doc => {
                 doc.data.date = correctDateTimeFormat(doc.data.date, true)
                 doc.data.lastPosted = correctDateTimeFormat(doc.data.lastPosted, true)
                 return
             })
+            if (!data.forumData.length) {
+                return
+            }
+            setLastDoc(data.lastVisible)
             setForumData(data.forumData)
             setPage(page - 1)
     }
@@ -39,7 +43,6 @@ const ForumCategory = () => {
 
     const fetchMore = async () => {
         const data = await getNextForumData(id, lastDoc)
-        setLastDoc(data.lastVisible)
         data.forumData.map(doc => {
                 doc.data.date = correctDateTimeFormat(doc.data.date, true)
                 doc.data.lastPosted = correctDateTimeFormat(doc.data.lastPosted, true)
@@ -48,6 +51,8 @@ const ForumCategory = () => {
         if (!data.forumData.length) {
             return
         }
+        setLastDoc(data.lastVisible)
+
         setForumData(data.forumData)
         setPreviousPage(prevState => {
             return {...prevState, [page + 1]: data.firstVisible}
@@ -87,7 +92,7 @@ const ForumCategory = () => {
                 <tbody className={styles.tbody}>
                     <tr>
                         <th className={styles.th}>Forum</th>
-                        <th className={styles.thDetails}>Author</th>
+                        <th className={styles.thAuthor}>Author</th>
                         <th className={styles.thDetails}>Replies</th>
                         <th className={styles.thDetailsLast}><span>Last posted</span></th>
                     </tr>
@@ -102,11 +107,11 @@ const ForumCategory = () => {
                             return <tr key={doc.id} className={styles.tableRow}>
                             <td className={styles.forumTopicName}>
                             <img width="20px" src="/svg/post-svg.svg" alt="post"/>
-                                <Link href={"/forum/tehnika/" + id + '/' + doc.id}>
+                                <Link href={"/forum/" + slug + "/" + id + '/' + doc.id}>
                                     <a><div  className={styles.link}>{doc.data.title}</div></a>
                                 </Link>
                             </td>
-                            <td className={styles.thDetails}>{doc.data.authorName}</td>
+                            <td className={styles.thAuthor}>{doc.data.authorName}</td>
                             <td className={styles.thDetails}>{doc.data.replies}</td>
                             <td className={styles.thDatetimeSmall}>{doc.data.lastPosted}</td>
                         </tr>
@@ -121,8 +126,9 @@ const ForumCategory = () => {
                     </Link>
                 </div>
                 <div className={styles.paginationButtons}>
-                    {page !== 1 && <p className={styles.nextPage}onClick={() => fetchPrevious()}>Previous</p>}
-                    {forumData.length > 14 && <p className={styles.nextPage}onClick={() => fetchMore()}>Next</p>}
+                    <p className={styles.nextPage} onClick={() => fetchPrevious()}>Previous</p>
+                    <p className={styles.pageNr}> {page} </p>
+                    <p className={styles.nextPage} onClick={() => fetchMore()}>Next</p> 
                 </div>
             </div>
         </div>

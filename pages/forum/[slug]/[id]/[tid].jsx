@@ -122,26 +122,22 @@ const Topic = () => {
 
                     </tr>
                     {replies.map(reply => {
-                        return < >
-                        <tr key={reply.id + 1}>
-                          <td className={styles.commentTopLineLeft}></td>
-                          <td className={styles.commentTopLine} colSpan="2">
-                          
-                          </td>
-                        </tr>
+                        return <>
+                       
+                    
                         <tr key={reply.id + 2} className={styles.tableRowTopicComment}>
                           <td valign="top" className={styles.commentAuthor}>
                             <div className={styles.authorDiv}>{reply.data.replyAuthor}</div>
                           </td>
                           <td className={styles.topicCommentContent} colSpan="2">
                               <div  className={styles.comment}>{reply.data.reply}</div>
-                              
+                              <i className={styles.commentDate}>{reply.data.date}</i>
                           </td>
                         </tr>
-                        <tr key={reply.id + 3}>
+                        <tr className={styles.firstGrayLine} key={reply.id + 4}>
                           <td className={styles.commentBottomLineLeft}></td>
                           <td className={styles.commentBottomLine} colSpan="2">
-                          <i>{reply.data.date}</i>
+                          
                           </td>
                         </tr>
                         

@@ -41,6 +41,12 @@ tr.tableRow:hover {
     text-align: center;
     border-left: solid 1px #6e849c;
 }
+.thAuthor {
+    min-width: 140px;
+    text-align: center;
+    border-left: solid 1px #6e849c;
+    border-right: none !important;
+}
 .thDatetimeSmall {
     font-size: 0.8rem;
 }
@@ -87,17 +93,33 @@ tr.tableRow:hover {
 .nextPage {
     cursor: pointer;
 }
+.pageNr {
+    padding: 0 5px;
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+}
 /* 
 ==>    TOPIC
 */
-.commentBottomLineLeft,
+
 .commentAuthor,
 .tdAuthor,
 .thAuthor {
     border-right: solid 2px #6e849c;
     width: 100px;
 }
+.tdAuthor {
+    background-color: ghostwhite;
+}
+
+.topicAuthorContent {
+    background-color: ghostwhite;
+}
+.thDatetime {
+    background-color: ghostwhite;
+}
 .commentAuthor {
+    background-color: ghostwhite;
     border-top: 2px solid #6e849c !important;
 }
 .authorDiv {
@@ -106,6 +128,7 @@ tr.tableRow:hover {
 }
 
 .topicCommentContent {
+    background-color: ghostwhite;
     padding: 0;
     border-top: 2px solid #6e849c !important;
 }
@@ -114,7 +137,11 @@ tr.tableRowTopic {
     background: none;
     
 }
+.commentBottomLineLeft {
+    border-top: solid black 1px;
+}
 .commentBottomLine {
+    border-top: solid black 1px;
     font-size: 0.9rem;
     padding: 0;
     padding-left: 8px;
@@ -203,6 +230,7 @@ tr.tableRowTopicComment {
     font-size: 1rem;
 }
 .commentInputTd {
+
     border-top: 1px solid #6e849c;
     text-align: center;
 }
@@ -211,14 +239,15 @@ tr.tableRowTopicComment {
 }
 .commentInput {
     resize: vertical;
-   margin: auto;
+    margin: auto;
     font-size: 1rem;
-    background-color: #e6e6e6;
+    background-color: ghostwhite;
     min-width: 80%;
     max-width: 80%;
     min-height: 100px;
     max-height: 200px;
 }
+
 .onEdit {
     font-size: 1rem;
 }

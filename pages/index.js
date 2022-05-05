@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import New from '../components/home/New'
 import SpecialOffer from '../components/home/SpecialOffer'
-
+import ForumTopics from '../components/home/ForumTopics'
 
 
 
@@ -10,14 +10,17 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <br />
 
       {/* <Search /> */}
       <main className={styles.main}>
         
         
         {/* <h3 className={styles.header}>POPULAR MAKES</h3> */}
-        <h3 className={styles.header}>EXPLORE, FIND YOUR DREAM CAR</h3>
+        <h3 className={styles.header}>EXPLORE AND FIND YOUR DREAM CAR</h3>
+        <br />
+        {/* <div>
+          <h3 className={styles.carsForSaleCount}>Currently <span className={styles.carsForSaleCountNumber}>36</span> cars for sale</h3>
+        </div> */}
         <div className={styles.popularMakes}>
           <h3 className={styles.popularMake}>Audi</h3>
           <h3 className={styles.popularMake}>BMW</h3>
@@ -46,8 +49,9 @@ export default function Home() {
 
         {/* <Reccomended /> */}
         <SpecialOffer />
-        <New /> 
-
+        <New />
+        <br />
+        <ForumTopics />
 
       </main>
 

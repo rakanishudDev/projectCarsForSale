@@ -4,22 +4,36 @@ const about = () => {
   return (
     <div style={{margin: "3rem"}}>
         <br/>
+        
         <div>
-          <h1>Project cars for sales</h1>
-        </div>
-        <div>
-          <p>Technologies used in this project:</p>
+          <p> Web Technologies:</p>
           <ul>
               <li>Next.js</li>
               <li>React.js</li>
               <li>Firebase</li>
           </ul>
+          <p>Dependencies:</p>
+          <ul>
+              <li>react-toastify</li>
+              <li>swiper</li>
+              <li>uuid</li>
+          </ul>
           <p>Github repo:</p>
           <ul>
-              <li><a href="https://github.com/rakanishudDev/projectCarsForSale">https://github.com/rakanishudDev/projectCarsForSale</a></li>
+              <li><a className="githubRepo" href="https://github.com/rakanishudDev/projectCarsForSale">https://github.com/rakanishudDev/projectCarsForSale</a></li>
 
           </ul>
         </div>
+        <style>
+          {
+            `
+            .githubRepo {
+              color: blue;
+            }
+
+            `
+          }
+        </style>
     </div>
   )
 }

@@ -8,7 +8,7 @@ const Voidpage = () => {
     router.push('/forum')
   })
   return (
-    <div>Voidpage</div>
+    <div>Void</div>
   )
 }
 
